@@ -1,0 +1,21 @@
+{
+  "name": "floremalonda_7_30112021",
+  "version": "1.0.0",
+  "description": "Projet 7 - Parcours Développeur d'application Front-End - OpenClassrooms",
+  "main": "index.js",
+  "scripts": {
+    "eslint": "eslint js/*",
+    "build": "sass src/scss/main.scss src/css/custom.css",
+    "dev": "sass src/scss/main.scss src/css/custom.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Flower-dev/FloreMalonda_7_30112021.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Flower-dev/FloreMalonda_7_30112021/issues"
+  },
+  "homepage": "https://github.com/Flower-dev/FloreMalonda_7_30112021#readme"
+}
