@@ -34,7 +34,7 @@ class Index {
             list.ingredients,
             list.description
           );
-          return `<div class='card_container'>${card.render()}</div>`;
+          return `${card.render()}`;
         });
       }
 
@@ -48,17 +48,16 @@ class Index {
     * Création du DOM physique
     */
     renderDOM(){
-        const navhome= new NavHome();
-
-        const $header = document.querySelector('#header');
-        $header.innerHTML = `
-            <div class='container-profil-view'>
-                <div class='header'>
-                    ${navhome.render()}
-                </div>
-            </div>
-        `
-        this.renderRecipeDOM(this.list);
+      const navhome= new NavHome();
+      const $header = document.querySelector('#header');
+      $header.innerHTML = `
+        <div class='container-profil-view'>
+          <div class='header'>
+            ${navhome.render()}
+          </div>
+        </div>
+      `
+      this.renderRecipeDOM(this.list);
     }
 };
 

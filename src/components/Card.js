@@ -20,7 +20,12 @@ class Card {
                             <p>${this.name}</p>
                         </div>
                         <div class='time_card'>
-                            <p>${this.time} min</p>
+                            <div class='fav_clock'>
+                                <i class="far fa-clock"></i>
+                            </div>
+                            <div class='text_clock'>
+                                <p>${this.time} min</p>
+                            </div> 
                         </div>
                     </div>
                     <div class='description_card'>

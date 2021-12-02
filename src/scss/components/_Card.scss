@@ -1,0 +1,47 @@
+.cooking {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+
+    .card_main {
+        width: 30%;
+        margin-bottom: 5%;
+        background-color: #E7E7E7;
+        border-radius: 5px;
+        
+        .img_card {
+            width: 100%;
+            height: 178px;
+            background-color: #C7BEBE;
+            border-top-left-radius: 5px; 
+            border-top-right-radius: 5px; 
+        }
+    
+        .content_card {
+            width: 100%;
+                
+    
+            .header_card {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                background-color: aquamarine;
+    
+                .time_card {
+                    display: flex;
+                    flex-direction: row;
+                    width: 20%;
+                    justify-content: space-between;
+                }
+                    
+            }
+        }
+    }
+}   
+
+
+
+

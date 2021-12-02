@@ -1,0 +1,61 @@
+/*---------------------------- VARIABLES ----------------------------------*/
+:root {
+  --font-default: "DM Sans", Arial, Helvetica, sans-serif;
+  --font-slab: var(--font-default);
+  --modal-duration: 0.8s;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/*---------------------------- BODY ----------------------------------*/
+body {
+  font-family: var(--font-default);
+}
+body .maxcontainer {
+  max-width: 1280px;
+  background-color: blueviolet;
+  margin: auto;
+}
+
+.cooking {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+}
+.cooking .card_main {
+  width: 30%;
+  margin-bottom: 5%;
+  background-color: #E7E7E7;
+  border-radius: 5px;
+}
+.cooking .card_main .img_card {
+  width: 100%;
+  height: 178px;
+  background-color: #C7BEBE;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.cooking .card_main .content_card {
+  width: 100%;
+}
+.cooking .card_main .content_card .header_card {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: aquamarine;
+}
+.cooking .card_main .content_card .header_card .time_card {
+  display: flex;
+  flex-direction: row;
+  width: 20%;
+  justify-content: space-between;
+}
+
+/*# sourceMappingURL=custom.css.map */
