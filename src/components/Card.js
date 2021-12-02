@@ -13,7 +13,9 @@ class Card {
 
         return (`
             <div class='card_main'>
-                <div class='img_card'></div>
+                <div class='img_card'>
+                    <img src='../../public/img/food.jpg' alt='food'/>
+                </div>
                 <div class='content_card'>
                     <div class='header_card'>
                         <div class='title_card'>

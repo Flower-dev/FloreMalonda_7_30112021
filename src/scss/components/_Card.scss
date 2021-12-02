@@ -17,6 +17,14 @@
             background-color: #C7BEBE;
             border-top-left-radius: 5px; 
             border-top-right-radius: 5px; 
+
+            img {
+                width: 100%;
+                height: 178px;
+                object-fit: cover; 
+                border-top-left-radius: 5px; 
+                border-top-right-radius: 5px; 
+            }
         }
     
         .content_card {
@@ -28,16 +36,38 @@
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
-                background-color: aquamarine;
     
                 .time_card {
                     display: flex;
                     flex-direction: row;
                     width: 20%;
-                    justify-content: space-between;
+                    justify-content: space-around;
                 }
                     
             }
+
+            .description_card {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                width: 100%;
+
+                .ingredients_content {
+                    font-size: 12px;
+                    line-height: 12px;
+                    letter-spacing: 0em;
+                    text-align: left;
+                    width: 40%;
+                }
+                .description_content {
+                    font-size: 12px;
+                    line-height: 12px;
+                    letter-spacing: 0em;
+                    text-align: left;
+                    width: 60%;
+                }
+            }
+
         }
     }
 }   
