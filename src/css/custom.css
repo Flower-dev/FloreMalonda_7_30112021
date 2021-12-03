@@ -17,6 +17,7 @@ body {
 }
 body .maxcontainer {
   max-width: 1280px;
+  background-color: blueviolet;
   margin: auto;
 }
 
@@ -54,7 +55,7 @@ body .maxcontainer {
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .cooking .card_main .content_card .header_card .time_card {
   display: flex;
@@ -70,17 +71,55 @@ body .maxcontainer {
 }
 .cooking .card_main .content_card .description_card .ingredients_content {
   font-size: 12px;
-  line-height: 12px;
+  line-height: 10px;
   letter-spacing: 0em;
   text-align: left;
   width: 40%;
 }
 .cooking .card_main .content_card .description_card .description_content {
-  font-size: 12px;
+  font-size: 10px;
   line-height: 12px;
   letter-spacing: 0em;
   text-align: left;
   width: 60%;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.searchbar {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.searchTerm {
+  width: 100%;
+  border: none;
+  border-right: none;
+  padding: 5px;
+  height: 36px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+.searchTerm:focus {
+  color: #9DBFAF;
+}
+
+.searchButton {
+  width: 40px;
+  height: 36px;
+  border: none;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
 }
 
 /*# sourceMappingURL=custom.css.map */

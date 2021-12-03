@@ -1,6 +1,7 @@
 // components
 import NavHome from './components/NavHome.js';
 import Card from './components/Card.js';
+import Search from './components/Search.js';
 
 
 class Index {
@@ -27,36 +28,40 @@ class Index {
     }
 
     renderCards(list){
-        return list.map(function(list) {
-          const card = new Card(
-            list.name, 
-            list.time, 
-            list.ingredients,
-            list.description
-          );
-          return `${card.render()}`;
-        });
-      }
-
-    renderRecipeDOM(list){
-        const $list = document.querySelector('#cooking')
-        $list.innerHTML = this.renderCards(list).join('')
+      return list.map(function(list) {
+        const card = new Card(
+          list.name, 
+          list.time, 
+          list.ingredients,
+          list.description
+        );
+        return `${card.render()}`;
+      });
     }
 
+    renderRecipeDOM(list){
+      const $list = document.querySelector('#cooking')
+      $list.innerHTML = this.renderCards(list).join('')
+    }
+
+    renderSearchDOM(){
+      const search = new Search();
+      const $search = document.querySelector('#search');
+      $search.innerHTML = `
+        ${search.render()}
+      `
+    }
 
     /**
     * Création du DOM physique
     */
     renderDOM(){
-      const navhome= new NavHome();
+      const navhome = new NavHome();
       const $header = document.querySelector('#header');
       $header.innerHTML = `
-        <div class='container-profil-view'>
-          <div class='header'>
-            ${navhome.render()}
-          </div>
-        </div>
+        ${navhome.render()}
       `
+      this.renderSearchDOM();
       this.renderRecipeDOM(this.list);
     }
 };
