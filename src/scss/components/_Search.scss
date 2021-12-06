@@ -1,11 +1,12 @@
-// .search {
-//     margin-bottom: 6%;
-// }
+.search {
+   margin-bottom: 6%;
+}
 
 .searchbar {
     width: 100%;
     position: relative;
     display: flex;
+    background-color: #E7E7E7;
 }
   
 .searchTerm {
@@ -16,20 +17,21 @@
     height: 36px;
     border-radius: 5px 0 0 5px;
     outline: none;
-    color: #9DBFAF;
+    color: black;
+    background-color: #E7E7E7;
 }
   
 .searchTerm:focus{
-    color: #9DBFAF;
+    color: black;
 }
   
 .searchButton {
     width: 40px;
     height: 36px;
     border: none;
-    // background: #00B4CC;
+    background: #E7E7E7;
     text-align: center;
-    color: #fff;
+    color: black;
     border-radius: 0 5px 5px 0;
     cursor: pointer;
     font-size: 20px;
