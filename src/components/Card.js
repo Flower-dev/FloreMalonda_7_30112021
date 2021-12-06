@@ -9,7 +9,17 @@ class Card {
 
 
     render() {
-
+        let ul = '<ul>'
+        this.ingredients.forEach(one => {
+            const ingredient =  (one.ingredient != undefined) ? one.ingredient : '';
+            const quantity = (one.quantity != undefined) ? one.quantity : '';
+            const unit = (one.unit != undefined) ? one.unit : '';
+            const li = `<li><span>${ingredient}</span>${quantity}${unit}</li>`;
+            ul += li;
+        
+            // ingredientsArray.push(ingredient)
+        })
+        ul += '</ul>'
 
         return (`
             <div class='card_main'>
@@ -32,7 +42,7 @@ class Card {
                     </div>
                     <div class='description_card'>
                         <div class='ingredients_content'>
-                        <li><span>${this.ingredients.ingredient}</span>${this.ingredients.quantity}${this.ingredients.unit}</li>
+                            ${ul}
                         </div>
                         <div class='description_content'>
                             <p>${this.description}</p>
@@ -48,12 +58,4 @@ export default Card;
 
 
 
-        // {this.ingredients}.forEach(one => {
-        //     (one.ingredient != undefined) ? ingredient = one.ingredient : ingredient = '';
-        //     (one.quantity != undefined) ? quantity = `: ${one.quantity}` : quantity = '';
-        //     (one.unit != undefined) ? unit = one.unit : unit = '';
-        //     const li = `<li><span>${ingredient}</span>${quantity}${unit}</li>`;
-        //     listElt.innerHTML += li;
         
-        //     ingredientsArray.push(ingredient)
-        // })

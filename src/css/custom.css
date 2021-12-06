@@ -98,6 +98,7 @@ body .maxcontainer {
   position: relative;
   display: flex;
   background-color: #E7E7E7;
+  border-radius: 5px;
 }
 
 .searchTerm {
@@ -106,7 +107,7 @@ body .maxcontainer {
   border-right: none;
   padding: 5px;
   height: 36px;
-  border-radius: 5px 0 0 5px;
+  border-radius: 5px;
   outline: none;
   color: black;
   background-color: #E7E7E7;
