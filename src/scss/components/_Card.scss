@@ -53,16 +53,18 @@
 
             .description_card {
                 display: flex;
+                padding-left: 4%;
+                padding-right: 4%;
+                padding-bottom: 4%;
                 flex-direction: row;
                 justify-content: space-between;
                 width: 100%;
 
                 .ingredients_content {
-                    font-size: 10px;
-                    line-height: 10px;
-                    letter-spacing: 0em;
+                    font-size: 12px;
                     text-align: left;
                     width: 40%;
+                    padding-right: 4%;
 
                     .list_ingredient {
                         list-style: none;
@@ -74,7 +76,7 @@
                 }
 
                 .description_content {
-                    font-size: 10px;
+                    font-size: 11px;
                     line-height: 12px;
                     letter-spacing: 0em;
                     text-align: left;
