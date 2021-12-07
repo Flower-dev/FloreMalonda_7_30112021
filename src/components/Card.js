@@ -32,7 +32,7 @@ class Card {
                         </div>
                         <div class='time_card'>
                             <div class='fav_clock'>
-                                <i class="far fa-clock"></i>
+                                <i class='far fa-clock'></i>
                             </div>
                             <div class='text_clock'>
                                 <p>${this.time} min</p>

@@ -2,6 +2,7 @@
 import NavHome from './components/NavHome.js';
 import Card from './components/Card.js';
 import Search from './components/Search.js';
+import Select from './components/Select.js';
 
 
 class Index {
@@ -52,6 +53,14 @@ class Index {
       `
     }
 
+    renderSelectDOM(){
+      const select = new Select();
+      const $select = document.querySelector('#select');
+      $select.innerHTML = `
+        ${select.render()}
+      `
+    }
+
     /**
     * Création du DOM physique
     */
@@ -62,6 +71,7 @@ class Index {
         ${navhome.render()}
       `
       this.renderSearchDOM();
+      this.renderSelectDOM();
       this.renderRecipeDOM(this.list);
     }
 };
