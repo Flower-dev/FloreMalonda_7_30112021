@@ -19,6 +19,13 @@ body .maxcontainer {
   max-width: 1280px;
   margin: auto;
 }
+body header {
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
+body main {
+  padding-top: 5%;
+}
 
 .cooking {
   display: flex;
