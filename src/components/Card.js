@@ -14,10 +14,9 @@ class Card {
             const ingredient =  (one.ingredient != undefined) ? one.ingredient : '';
             const quantity = (one.quantity != undefined) ? one.quantity : '';
             const unit = (one.unit != undefined) ? one.unit : '';
-            const li = `<li><span>${ingredient}</span>${quantity}${unit}</li>`;
+            const li = `<li class='list_ingredient'><span class='text_ingredient'>${ingredient}: </span>${quantity} ${unit}</li>`;
             ul += li;
         
-            // ingredientsArray.push(ingredient)
         })
         ul += '</ul>'
 

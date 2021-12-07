@@ -33,15 +33,20 @@
     
             .header_card {
                 width: 100%;
+                padding: 4%;
                 display: flex;
                 flex-direction: row;
-                justify-content: space-around;
+                justify-content: space-between;
     
                 .time_card {
                     display: flex;
                     flex-direction: row;
                     width: 20%;
                     justify-content: space-around;
+
+                    .text_clock {
+                        font-weight: bolder;
+                    }
                 }
                     
             }
@@ -53,12 +58,21 @@
                 width: 100%;
 
                 .ingredients_content {
-                    font-size: 12px;
+                    font-size: 10px;
                     line-height: 10px;
                     letter-spacing: 0em;
                     text-align: left;
                     width: 40%;
+
+                    .list_ingredient {
+                        list-style: none;
+
+                        .text_ingredient {
+                            font-weight: bolder;
+                        }
+                    }
                 }
+
                 .description_content {
                     font-size: 10px;
                     line-height: 12px;

@@ -52,15 +52,19 @@ body .maxcontainer {
 }
 .cooking .card_main .content_card .header_card {
   width: 100%;
+  padding: 4%;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 .cooking .card_main .content_card .header_card .time_card {
   display: flex;
   flex-direction: row;
   width: 20%;
   justify-content: space-around;
+}
+.cooking .card_main .content_card .header_card .time_card .text_clock {
+  font-weight: bolder;
 }
 .cooking .card_main .content_card .description_card {
   display: flex;
@@ -69,11 +73,17 @@ body .maxcontainer {
   width: 100%;
 }
 .cooking .card_main .content_card .description_card .ingredients_content {
-  font-size: 12px;
+  font-size: 10px;
   line-height: 10px;
   letter-spacing: 0em;
   text-align: left;
   width: 40%;
+}
+.cooking .card_main .content_card .description_card .ingredients_content .list_ingredient {
+  list-style: none;
+}
+.cooking .card_main .content_card .description_card .ingredients_content .list_ingredient .text_ingredient {
+  font-weight: bolder;
 }
 .cooking .card_main .content_card .description_card .description_content {
   font-size: 10px;
