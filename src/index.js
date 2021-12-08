@@ -53,8 +53,10 @@ class Index {
       `
     }
 
-    renderSelectDOM(){
-      const select = new Select();
+    renderSelectDOM(list){
+      const select = new Select(
+        this.list = list
+      );
       const $select = document.querySelector('#select');
       $select.innerHTML = `
         ${select.render()}
@@ -71,7 +73,7 @@ class Index {
         ${navhome.render()}
       `
       this.renderSearchDOM();
-      this.renderSelectDOM();
+      this.renderSelectDOM(this.list);
       this.renderRecipeDOM(this.list);
     }
 };
