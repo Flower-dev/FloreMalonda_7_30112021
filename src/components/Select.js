@@ -5,10 +5,8 @@ class Select {
 
     render(){
 
-        // pour récupérer la liste de l'ensemble des ingredients
-        // créer une variable avec un tableau vide
-        // 
-        // parcourir l'ensemble des ingredients et pour chacun le mettre dans le tableau sauf si existants
+        // Liste des ingredients
+
         let ingredientsList = [];
         this.list.map(function(item) {
             let tmp = item.ingredients.map(function(subItem){
@@ -20,6 +18,29 @@ class Select {
         ingredientsList = [...ingredientsList]
         console.log(ingredientsList);
         // TODO : revoir code + recherche sur l'utilisation de SET en JS
+
+        // Liste des appliances
+
+        let appliancesList = [];
+        let tmp = this.list.map(function(item) {
+                return item.appliance
+        });
+        appliancesList = appliancesList.concat(tmp)
+        appliancesList = new Set(appliancesList)
+        appliancesList = [...appliancesList]
+        console.log(appliancesList);
+
+        // Liste des ustensiles 
+        
+        let ustensilsList = [];
+        let tmp2 = this.list.map(function(item) {
+            return item.ustensils
+        });
+        ustensilsList = ustensilsList.concat(tmp2)
+        ustensilsList = new Set(ustensilsList)
+        ustensilsList = [...ustensilsList]
+        console.log(ustensilsList);
+
 
 
         return(`
@@ -33,7 +54,7 @@ class Select {
                 <div class='select2'>
                     <input placeholder= 'appliance' list='appliance'>
                     <datalist id='appliance'>
-                        <option value='test'>
+                        <option value=${appliancesList}>
                     </datalist>
                 </div>
                 <div class='select3'>
