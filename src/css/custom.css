@@ -152,5 +152,35 @@ body main {
   display: flex;
   flex-direction: row;
 }
+.container_select .select1 {
+  margin-right: 2%;
+}
+.container_select .select1 .ingredients {
+  width: 170px;
+  height: 69px;
+  background-color: #3282F7;
+  border-radius: 5px;
+  border: none;
+  color: white;
+}
+.container_select .select2 {
+  margin-right: 2%;
+}
+.container_select .select2 .appliance {
+  width: 170px;
+  height: 69px;
+  background-color: #68D9A4;
+  border-radius: 5px;
+  border: none;
+  color: white;
+}
+.container_select .ustensils {
+  width: 170px;
+  height: 69px;
+  background-color: #ED6454;
+  border-radius: 5px;
+  border: none;
+  color: white;
+}
 
 /*# sourceMappingURL=custom.css.map */
