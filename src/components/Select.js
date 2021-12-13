@@ -3,6 +3,10 @@ class Select {
         this.list = list
     }
 
+    // refactorisation
+    // utilisation de type
+    // remonter au parent le type et l'element
+
     render(){
 
         // Liste des ingredients
@@ -77,5 +81,3 @@ class Select {
 }
 
 export default Select;
-
-// <option value=${listIngredients}>

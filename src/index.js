@@ -28,23 +28,62 @@ class Index {
       });
     }
 
-    renderCards(list){
-      return list.map(function(list) {
-        const card = new Card(
-          list.name, 
-          list.time, 
-          list.ingredients,
-          list.description
-        );
-        return `${card.render()}`;
+    // Liste des ingredients
+
+    ingredientsList(){
+      let ingredientsList = [];
+      this.list.map(function(item) {
+        let tmp = item.ingredients.map(function(subItem){
+            return subItem.ingredient
+        });
+        ingredientsList = ingredientsList.concat(tmp)
       });
+      ingredientsList = new Set(ingredientsList)
+      ingredientsList = [...ingredientsList]
+      console.log(ingredientsList);
+
+      let optionsIngredients = '';
+      for (let i = 0; i < ingredientsList.length; i++) {
+          optionsIngredients += '<option value="' + ingredientsList[i] + '" />';
+      }
+    };
+    
+    // TODO : revoir code + recherche sur l'utilisation de SET en JS
+
+    // Liste des appliances
+    appliancesList(){
+      let appliancesList = [];
+      let tmp = this.list.map(function(item) {
+              return item.appliance
+      });
+      appliancesList = appliancesList.concat(tmp)
+      appliancesList = new Set(appliancesList)
+      appliancesList = [...appliancesList]
+      console.log(appliancesList);
+
+      let optionsAppliance = '';
+      for (let i = 0; i < appliancesList.length; i++) {
+        optionsAppliance += '<option value="' + appliancesList[i] + '" />';
+      }
     }
 
-    renderRecipeDOM(list){
-      const $list = document.querySelector('#cooking')
-      $list.innerHTML = this.renderCards(list).join('')
-    }
+    // Liste des ustensiles 
+    ustensilsList(){
+      let ustensilsList = [];
+      let tmp2 = this.list.map(function(item) {
+          return item.ustensils
+      });
+      ustensilsList = ustensilsList.concat(tmp2)
+      ustensilsList = new Set(ustensilsList)
+      ustensilsList = [...ustensilsList]
+      console.log(ustensilsList);
 
+      let optionsUstensils = '';
+      for (let i = 0; i < ustensilsList.length; i++) {
+        optionsUstensils += '<option value="' + ustensilsList[i] + '" />'
+      }
+    }
+    
     renderSearchDOM(){
       const search = new Search();
       const $search = document.querySelector('#search');
@@ -61,6 +100,23 @@ class Index {
       $select.innerHTML = `
         ${select.render()}
       `
+    }
+
+    renderCards(list){
+      return list.map(function(list) {
+        const card = new Card(
+          list.name, 
+          list.time, 
+          list.ingredients,
+          list.description
+        );
+        return `${card.render()}`;
+      });
+    }
+
+    renderRecipeDOM(list){
+      const $list = document.querySelector('#cooking')
+      $list.innerHTML = this.renderCards(list).join('')
     }
 
     /**
