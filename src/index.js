@@ -8,6 +8,7 @@ import Select from './components/Select.js';
 class Index {
     constructor(){
         this.list = [];
+        this.cards = [];
         (async () => {
           await this.loadData();
             this.renderDOM()
@@ -28,11 +29,21 @@ class Index {
       });
     }
 
-    // Liste des ingredients
+  // Gestion des selects
 
-    ingredientsList(){
+     displayCards() {
+      let divCards = document.querySelector('.cards');
+      divCards.innerHTML = '';
+      this.renderCardsDOM();
+    }
+
+   
+
+    selectList(list){
+
+       // Liste des ingredients
       let ingredientsList = [];
-      this.list.map(function(item) {
+      list.map(function(item) {
         let tmp = item.ingredients.map(function(subItem){
             return subItem.ingredient
         });
@@ -40,35 +51,28 @@ class Index {
       });
       ingredientsList = new Set(ingredientsList)
       ingredientsList = [...ingredientsList]
-      console.log(ingredientsList);
 
       let optionsIngredients = '';
       for (let i = 0; i < ingredientsList.length; i++) {
           optionsIngredients += '<option value="' + ingredientsList[i] + '" />';
       }
-    };
-    
-    // TODO : revoir code + recherche sur l'utilisation de SET en JS
 
-    // Liste des appliances
-    appliancesList(){
+      // Liste des appliances
       let appliancesList = [];
-      let tmp = this.list.map(function(item) {
+      let tmp = list.map(function(item) {
               return item.appliance
       });
       appliancesList = appliancesList.concat(tmp)
       appliancesList = new Set(appliancesList)
       appliancesList = [...appliancesList]
-      console.log(appliancesList);
 
       let optionsAppliance = '';
       for (let i = 0; i < appliancesList.length; i++) {
         optionsAppliance += '<option value="' + appliancesList[i] + '" />';
       }
-    }
 
-    // Liste des ustensiles 
-    ustensilsList(){
+      // Liste des ustensiles 
+  
       let ustensilsList = [];
       let tmp2 = this.list.map(function(item) {
           return item.ustensils
@@ -76,14 +80,15 @@ class Index {
       ustensilsList = ustensilsList.concat(tmp2)
       ustensilsList = new Set(ustensilsList)
       ustensilsList = [...ustensilsList]
-      console.log(ustensilsList);
 
       let optionsUstensils = '';
       for (let i = 0; i < ustensilsList.length; i++) {
         optionsUstensils += '<option value="' + ustensilsList[i] + '" />'
       }
+
     }
-    
+
+
     renderSearchDOM(){
       const search = new Search();
       const $search = document.querySelector('#search');
@@ -92,14 +97,14 @@ class Index {
       `
     }
 
-    renderSelectDOM(list){
-      const select = new Select(
-        this.list = list
-      );
+    renderSelect() {
+      const select = new Select((list) => this.selectList(list));
+      return `${select.render()}`;
+    }
+
+    renderSelectDOM(){
       const $select = document.querySelector('#select');
-      $select.innerHTML = `
-        ${select.render()}
-      `
+      $select.innerHTML = renderSelect()
     }
 
     renderCards(list){
