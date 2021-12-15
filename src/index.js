@@ -37,10 +37,8 @@ class Index {
       this.renderCardsDOM();
     }
 
-   
-
+  
     selectList(list){
-
        // Liste des ingredients
       let ingredientsList = [];
       list.map(function(item) {
@@ -97,14 +95,15 @@ class Index {
       `
     }
 
-    renderSelect() {
-      const select = new Select((list) => this.selectList(list));
-      return `${select.render()}`;
-    }
+    // renderSelect() {
+    //   const select = new Select((list) => this.selectList(list));
+    //   return `${select.render()}`;
+    // }
 
     renderSelectDOM(){
+      const select = new Select((list) => this.selectList(list));
       const $select = document.querySelector('#select');
-      $select.innerHTML = renderSelect()
+      $select.innerHTML = `${select.render()}`;
     }
 
     renderCards(list){
