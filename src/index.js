@@ -38,42 +38,43 @@ class Index {
   }
 
   // Liste des ingredients
-  selectIngredientsList(){
-    let ingredientsList = [];
-    this.list.map(function(item) {
-      let tmp = item.ingredients.map(function(subItem){
-          return subItem.ingredient
-      });
-      ingredientsList = ingredientsList.concat(tmp)
-    });
-    this.ingredientsList = new Set(ingredientsList)
-    this.ingredientsList = [...ingredientsList]
-  }
+  // selectIngredientsList(list){
+  //   let ingredientsList = [];
+  //   let arr = list.map(function(item) {
+  //     let tmp = item.ingredients.map(function(subItem){
+  //         return subItem.ingredient
+  //     });
+  //     ingredientsList = ingredientsList.concat(arr)
+  //   });
+  //   ingredientsList = new Set(ingredientsList)
+  //   ingredientsList = [...ingredientsList]
 
-  selectOptionsIngredients() {
-    let optionsIngredients = '';
-    for (let i = 0; i < ingredientsList.length; i++) {
-        optionsIngredients += '<option value="' + ingredientsList[i] + '" />';
-    }
-  }
+  //   let optionsIngredients = '';
+  //   for (let i = 0; i < ingredientsList.length; i++) {
+  //     optionsIngredients += '<option value="' + ingredientsList[i] + '" />';
+  //   }
+
+  //   return selectIngredientsList;
+  // }
 
   // Liste des appliances
-  selectAppliancesList() {
-    let appliancesList = [];
-    let arr = this.list.map(function(item) {
-          return item.appliance
-    });
-    appliancesList = appliancesList.concat(arr)
-    appliancesList = new Set(appliancesList)
-    appliancesList = [...appliancesList]
-  }
+  // selectAppliancesList(list) {
+  //   let appliancesList = [];
+  //   let arr = list.map(function(item) {
+  //         return item.appliance
+  //   });
+  //   appliancesList = appliancesList.concat(arr)
+  //   appliancesList = new Set(appliancesList)
+  //   appliancesList = [...appliancesList]
 
-  selectOptionsAppliance() {
-    let optionsAppliance = '';
-    for (let i = 0; i < appliancesList.length; i++) {
-      optionsAppliance += '<option value="' + appliancesList[i] + '" />';
-    }
-  }
+  //   let optionsAppliance = '';
+  //   for (let i = 0; i < appliancesList.length; i++) {
+  //     optionsAppliance += '<option value="' + appliancesList[i] + '" />';
+  //   }
+
+  //   return optionsAppliance;
+  // }
+
   // Liste des ustensiles 
   selectUstensilsList(list) {
     let ustensilsList = [];
@@ -83,9 +84,7 @@ class Index {
     ustensilsList = ustensilsList.concat(arr2)
     ustensilsList = new Set(ustensilsList)
     ustensilsList = [...ustensilsList]
-  }
 
-  selectOptionsUstensils() {
     let optionsUstensils = '';
     for (let i = 0; i < ustensilsList.length; i++) {
       optionsUstensils += '<option value="' + ustensilsList[i] + '" />'
@@ -106,12 +105,13 @@ class Index {
   //   return `${select.render()}`;
   // }
 
-  renderSelectDOM(){
+  renderSelectDOM( selectUstensilsList ){
     const select = new Select(
-      console.log(this.selectUstensilsList),
-      this.selectOptionsIngredients,
-      this.selectOptionsAppliance,
-      this.selectOptionsUstensils
+      console.log(this.selectUstensilsList(selectUstensilsList)),
+      // console.log(this.selectAppliancesList(selectAppliancesList)),
+      // this.selectIngredientsList(selectIngredientsList),
+      // this.selectAppliancesList(selectAppliancesList),
+      this.selectUstensilsList(selectUstensilsList)
     );
     const $select = document.querySelector('#select');
     $select.innerHTML = `${select.render()}`;
