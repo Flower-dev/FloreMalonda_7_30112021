@@ -59,29 +59,34 @@ class Index {
 
   // Liste des appliances
   selectAppliancesList(list) {
-    let appliancesList = [];
-    let arr = list.map(function(item) {
+    let appliancesList = list.map(function(item) {
           return item.appliance
     });
-    appliancesList = appliancesList.concat(arr)
     appliancesList = new Set(appliancesList)
     appliancesList = [...appliancesList]
 
-    let optionsAppliance = '';
-    for (let i = 0; i < appliancesList.length; i++) {
-      optionsAppliance += '<option value="' + appliancesList[i] + '" />';
-    }
+    return appliancesList
+    
+  }
 
+  selectOptionsAppliance(appliancesList) {
+    let optionsAppliance = '';
+    for (var i = 0; i < appliancesList.length; i++) {
+      var option = document.createElement("option");
+      option.value = appliancesList[i];
+      option.text = appliancesList[i];
+      selectList.appendChild(option);
+    }
     return optionsAppliance;
   }
 
-  // Liste des ustensiles 
+
+  // // Liste des ustensiles 
   // selectUstensilsList(list) {
-  //   let ustensilsList = [];
-  //   let arr2 = list.map(function(item) {
+  //   let ustensilsList = list.map(function(item) {
   //       return item.ustensils
   //   });
-  //   ustensilsList = ustensilsList.concat(arr2)
+  //   console.log(item.ustensils);
   //   ustensilsList = new Set(ustensilsList)
   //   ustensilsList = [...ustensilsList]
 
@@ -100,8 +105,9 @@ class Index {
     `
   }
 
-  renderSelectDOM( selectAppliancesList ){
+  renderSelectDOM( selectAppliancesList, selectUstensilsList, optionsAppliance){
     const select = new Select(
+      console.log(optionsAppliance),
       // console.log(this.selectUstensilsList(selectUstensilsList)),
       console.log(this.selectAppliancesList(selectAppliancesList)),
       // this.selectIngredientsList(selectIngredientsList),
@@ -110,6 +116,11 @@ class Index {
     );
     const $select = document.querySelector('#select');
     $select.innerHTML = `${select.render()}`;
+
+    //Create and append select list
+// var selectList = document.createElement("select");
+// selectList.id = "mySelect";
+// myParent.appendChild(selectList);
   }
 
   renderCards(list){
