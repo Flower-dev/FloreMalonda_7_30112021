@@ -58,39 +58,39 @@ class Index {
   // }
 
   // Liste des appliances
-  // selectAppliancesList(list) {
-  //   let appliancesList = [];
-  //   let arr = list.map(function(item) {
-  //         return item.appliance
-  //   });
-  //   appliancesList = appliancesList.concat(arr)
-  //   appliancesList = new Set(appliancesList)
-  //   appliancesList = [...appliancesList]
+  selectAppliancesList(list) {
+    let appliancesList = [];
+    let arr = list.map(function(item) {
+          return item.appliance
+    });
+    appliancesList = appliancesList.concat(arr)
+    appliancesList = new Set(appliancesList)
+    appliancesList = [...appliancesList]
 
-  //   let optionsAppliance = '';
-  //   for (let i = 0; i < appliancesList.length; i++) {
-  //     optionsAppliance += '<option value="' + appliancesList[i] + '" />';
-  //   }
+    let optionsAppliance = '';
+    for (let i = 0; i < appliancesList.length; i++) {
+      optionsAppliance += '<option value="' + appliancesList[i] + '" />';
+    }
 
-  //   return optionsAppliance;
-  // }
+    return optionsAppliance;
+  }
 
   // Liste des ustensiles 
-  selectUstensilsList(list) {
-    let ustensilsList = [];
-    let arr2 = list.map(function(item) {
-        return item.ustensils
-    });
-    ustensilsList = ustensilsList.concat(arr2)
-    ustensilsList = new Set(ustensilsList)
-    ustensilsList = [...ustensilsList]
+  // selectUstensilsList(list) {
+  //   let ustensilsList = [];
+  //   let arr2 = list.map(function(item) {
+  //       return item.ustensils
+  //   });
+  //   ustensilsList = ustensilsList.concat(arr2)
+  //   ustensilsList = new Set(ustensilsList)
+  //   ustensilsList = [...ustensilsList]
 
-    let optionsUstensils = '';
-    for (let i = 0; i < ustensilsList.length; i++) {
-      optionsUstensils += '<option value="' + ustensilsList[i] + '" />'
-    }
-    return optionsUstensils;
-  }
+  //   let optionsUstensils = '';
+  //   for (let i = 0; i < ustensilsList.length; i++) {
+  //     optionsUstensils += '<option value="' + ustensilsList[i] + '" />'
+  //   }
+  //   return optionsUstensils;
+  // }
 
   renderSearchDOM(){
     const search = new Search();
@@ -100,18 +100,13 @@ class Index {
     `
   }
 
-  // renderSelect() {
-  //   const select = new Select((list) => this.selectList(list));
-  //   return `${select.render()}`;
-  // }
-
-  renderSelectDOM( selectUstensilsList ){
+  renderSelectDOM( selectAppliancesList ){
     const select = new Select(
-      console.log(this.selectUstensilsList(selectUstensilsList)),
-      // console.log(this.selectAppliancesList(selectAppliancesList)),
+      // console.log(this.selectUstensilsList(selectUstensilsList)),
+      console.log(this.selectAppliancesList(selectAppliancesList)),
       // this.selectIngredientsList(selectIngredientsList),
-      // this.selectAppliancesList(selectAppliancesList),
-      this.selectUstensilsList(selectUstensilsList)
+      this.selectAppliancesList(selectAppliancesList),
+      // this.selectUstensilsList(selectUstensilsList)
     );
     const $select = document.querySelector('#select');
     $select.innerHTML = `${select.render()}`;

@@ -1,29 +1,41 @@
 class Select {
-    constructor(selectUstensilsList){
-        // this.selectOptionsIngredients = selectOptionsIngredients
-        // this.selectOptionsAppliance = selectOptionsAppliance
+    constructor(selectIngredientsList, selectAppliancesList, selectUstensilsList){
+        this.selectIngredientsList = selectIngredientsList
+        this.selectAppliancesList = selectAppliancesList
         this.selectUstensilsList = selectUstensilsList
     }
 
     render(){
 
+        let KeyData = [
+            {
+                placeholder: 'Ingredients',
+                option: `${this.selectIngredientsList}`,
+            },
+            {
+                placeholder: 'Appareils',
+                option: `${this.selectOptionsAppliance}`,
+            },
+            {
+                placeholder: 'Ustensiles',
+                option: `${this.selectUstensilsList}`,
+            },
+        ];
+
+        let container = `<div class='container_select'>` 
+        {KeyData.map((item) => (
+            `<div class='select'>
+                <input class='ingredients' placeholder=${item.placeholder} list=${item.placeholder}>
+                <datalist id='ingredients'>${item.option}</datalist> 
+            </div>`
+        ))} 
+        
+        container += '</div>'
+
         return(`
-            <div class='container_select'>
-                <div class='select1'>
-                    <input class='ingredients' placeholder='ingredients' list='ingredients'>
-                    <datalist id='ingredients'></datalist> 
-                </div>
-                <div class='select2'>
-                    <input class='appliance' placeholder='appliance' list='appliance'>
-                    <datalist id='appliance'>
-                        <option value='toto'/>
-                    </datalist>
-                </div>
-                <div class='select3'>
-                    <input class='ustensils' placeholder='ustensils' list='ustensils'>
-                    <datalist id='ustensils'>${this.selectUstensilsList}</datalist>
-                </div>
-            </div>
+
+           ${container}
+             
         `)
     }
 }
