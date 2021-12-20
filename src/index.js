@@ -38,64 +38,40 @@ class Index {
   }
 
   // Liste des ingredients
-  // selectIngredientsList(list){
-  //   let ingredientsList = [];
-  //   let arr = list.map(function(item) {
-  //     let tmp = item.ingredients.map(function(subItem){
-  //         return subItem.ingredient
-  //     });
-  //     ingredientsList = ingredientsList.concat(arr)
-  //   });
-  //   ingredientsList = new Set(ingredientsList)
-  //   ingredientsList = [...ingredientsList]
+  selectIngredientsList(){
+    let ingredientsList = this.list.map(function(item) {
+      let tmp = item.ingredients.map(function(subItem){
+          return subItem.ingredient
+      });
+      return tmp;
+    });
 
-  //   let optionsIngredients = '';
-  //   for (let i = 0; i < ingredientsList.length; i++) {
-  //     optionsIngredients += '<option value="' + ingredientsList[i] + '" />';
-  //   }
-
-  //   return selectIngredientsList;
-  // }
+    return ingredientsList.reduce((acc, cur)=>{
+      return acc.concat(cur)
+    }, [])
+  }
 
   // Liste des appliances
-  selectAppliancesList(list) {
-    let appliancesList = list.map(function(item) {
+  selectAppliancesList() {
+    return this.list.map(function(item) {
           return item.appliance
     });
-    appliancesList = new Set(appliancesList)
-    appliancesList = [...appliancesList]
-
-    return appliancesList
-    
   }
 
-  selectOptionsAppliance(appliancesList) {
-    let optionsAppliance = '';
-    for (var i = 0; i < appliancesList.length; i++) {
-      var option = document.createElement("option");
-      option.value = appliancesList[i];
-      option.text = appliancesList[i];
-      selectList.appendChild(option);
-    }
-    return optionsAppliance;
+  // Liste des ustensiles 
+  selectUstensilsList() {
+    let ustensilsList = this.list.map(function(item) {
+      let tmp = item.ustensils.map(function(subItem){
+          return subItem
+      });
+      return tmp;
+    });
+
+    return ustensilsList.reduce((acc, cur)=>{
+      return acc.concat(cur)
+    }, [])
+
   }
-
-
-  // // Liste des ustensiles 
-  // selectUstensilsList(list) {
-  //   let ustensilsList = list.map(function(item) {
-  //       return item.ustensils
-  //   });
-  //   console.log(item.ustensils);
-  //   ustensilsList = new Set(ustensilsList)
-  //   ustensilsList = [...ustensilsList]
-
-  //   let optionsUstensils = '';
-  //   for (let i = 0; i < ustensilsList.length; i++) {
-  //     optionsUstensils += '<option value="' + ustensilsList[i] + '" />'
-  //   }
-  //   return optionsUstensils;
-  // }
 
   renderSearchDOM(){
     const search = new Search();
@@ -105,23 +81,21 @@ class Index {
     `
   }
 
-  renderSelectDOM( selectAppliancesList, selectUstensilsList, optionsAppliance){
-    const select = new Select(
-      console.log(optionsAppliance),
-      // console.log(this.selectUstensilsList(selectUstensilsList)),
-      console.log(this.selectAppliancesList(selectAppliancesList)),
-      // this.selectIngredientsList(selectIngredientsList),
-      this.selectAppliancesList(selectAppliancesList),
-      // this.selectUstensilsList(selectUstensilsList)
-    );
-    const $select = document.querySelector('#select');
-    $select.innerHTML = `${select.render()}`;
+  renderSelectDOM(){
 
-    //Create and append select list
-// var selectList = document.createElement("select");
-// selectList.id = "mySelect";
-// myParent.appendChild(selectList);
+    const selectIngredients = new Select('ingredients', this.selectIngredientsList());
+    const $selectIngredients = document.querySelector('#select-ingredients');
+    $selectIngredients.innerHTML = `${selectIngredients.render()}`;
+
+    const selectAppliances = new Select('appliances', this.selectAppliancesList());
+    const $selectAppliances = document.querySelector('#select-appliances');
+    $selectAppliances.innerHTML = `${selectAppliances.render()}`;
+
+    const selectUstensils = new Select('ustensils', this.selectUstensilsList());
+    const $selectUstensils = document.querySelector('#select-ustensils');
+    $selectUstensils.innerHTML = `${selectUstensils.render()}`;
   }
+
 
   renderCards(list){
     return list.map(function(list) {
@@ -150,7 +124,7 @@ class Index {
       ${navhome.render()}
     `
     this.renderSearchDOM();
-    this.renderSelectDOM(this.list);
+    this.renderSelectDOM();
     this.renderRecipeDOM(this.list);
   }
 };
