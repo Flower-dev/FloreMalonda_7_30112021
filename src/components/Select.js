@@ -5,16 +5,20 @@ class Select {
     }
 
     renderOption(option){
-        return `<option value="${option}"></option>`
+        return `<li><button class="dropdown-item" type="button">${option}</button></li>`
     }
 
     render(){
 
         return(`
 
-            <div>
-                <input list='${this.id}'>
-                <datalist id='${this.id}'>${this.options.map(option => this.renderOption(option))}</datalist> 
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                ${this.id}
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    ${this.options.map(option => this.renderOption(option))}
+                </ul>
             </div>
              
         `)

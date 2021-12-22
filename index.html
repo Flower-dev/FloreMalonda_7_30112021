@@ -17,15 +17,18 @@
         href='https://fonts.googleapis.com/css?family=DM+Sans'
         rel='stylesheet'
         />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <script src='https://kit.fontawesome.com/ddde616424.js' crossorigin='anonymous'></script>
     </head>
 
     <body>
         <header id='header' class='header maxcontainer' aria-label='header'></header>
         <section id='search'  class='search maxcontainer'></section>
-        <section id='select-ingredients'  class='select maxcontainer'></section>
-        <section id='select-appliances'  class='select maxcontainer'></section>
-        <section id='select-ustensils'  class='select maxcontainer'></section>
+        <section id='select-container' class='selectcontainer maxcontainer'>
+        <div id='select-ingredients'  class='select maxcontainer'></div>
+        <div id='select-appliances'  class='select maxcontainer'></div>
+        <div id='select-ustensils'  class='select maxcontainer'></div>
+        </section>
         <main id='cooking'  class='cooking maxcontainer'></main>
 
         <script src='src/index.js' type='module'></script>

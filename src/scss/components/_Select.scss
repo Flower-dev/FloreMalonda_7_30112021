@@ -1,39 +1,4 @@
-.container_select {
+.selectcontainer {
     display: flex;
     flex-direction: row;
-
-    .select1 {
-        margin-right: 2%;
-
-        .ingredients {
-            width: 170px;
-            height: 69px;
-            background-color: #3282F7;
-            border-radius: 5px;
-            border: none;
-            color: white;
-        }
-    }
-
-    .select2 {
-        margin-right: 2%;
-
-        .appliance {
-            width: 170px;
-            height: 69px;
-            background-color: #68D9A4;
-            border-radius: 5px;
-            border: none;
-            color: white;
-        }
-    }
-
-    .ustensils {
-        width: 170px;
-        height: 69px;
-        background-color: #ED6454;
-        border-radius: 5px;
-        border: none;
-        color: white;
-    }
 }
