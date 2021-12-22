@@ -4,20 +4,23 @@ class Select {
         this.options = options
     }
 
-    renderOption(option){
-        return `<li><button class="dropdown-item" type="button">${option}</button></li>`
-    }
-
     render(){
+       console.log(this.id)
+
+        let toto = "";
+        this.options.map(option => {
+            console.log(option)
+            toto += "<li>" + option + "</li>"
+        
+        })
 
         return(`
-
             <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-                ${this.id}
+                <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    ${this.id}
                 </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    ${this.options.map(option => this.renderOption(option))}
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" id='${this.id}'>
+                    ${toto}
                 </ul>
             </div>
              
