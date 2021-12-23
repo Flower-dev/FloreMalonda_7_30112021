@@ -4,19 +4,27 @@ class Select {
         this.options = options
     }
 
-    render(){
-       console.log(this.id)
+    
+    // typeStyle() {
+    //     this.id === 'ingredients' ? 
+    //         'btn btn-info dropdown-toggle'
+    //      : this.id === 'appliances' ? 
+    //         'btn btn-warning dropdown-toggle'
+    //      : this.id === 'ustensils' ? 
+    //         'btn btn-success dropdown-toggle'
+    // }
 
+
+    render(){
+      
         let value = '';
         this.options.map(option => {
-            console.log(option)
             value += "<li>" + '<a href="#">' + option + '</a>' + "</li>"
-        
         })
 
         return(`
             <div class="dropdown">
-                <button id="dLabel" class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button id="dLabel" class='btn btn-info dropdown-toggle' type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     ${this.id}
                     <span class="caret"></span>
                 </button>

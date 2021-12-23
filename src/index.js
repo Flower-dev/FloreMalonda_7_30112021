@@ -83,7 +83,6 @@ class Index {
   }
 
   renderSelectDOM(){
-    console.log(this.selectUstensilsList());
     const selectIngredients = new Select('ingredients', this.selectIngredientsList());
     const $selectIngredients = document.querySelector('#select-ingredients');
     $selectIngredients.innerHTML = `${selectIngredients.render()}`;
