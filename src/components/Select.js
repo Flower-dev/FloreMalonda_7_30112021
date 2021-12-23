@@ -7,20 +7,21 @@ class Select {
     render(){
        console.log(this.id)
 
-        let toto = "";
+        let value = '';
         this.options.map(option => {
             console.log(option)
-            toto += "<li>" + option + "</li>"
+            value += "<li>" + '<a href="#">' + option + '</a>' + "</li>"
         
         })
 
         return(`
             <div class="dropdown">
-                <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button id="dLabel" class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     ${this.id}
+                    <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" id='${this.id}'>
-                    ${toto}
+                    ${value}
                 </ul>
             </div>
              
