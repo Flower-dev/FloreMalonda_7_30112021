@@ -9,6 +9,9 @@ class Index {
   constructor(){
     this.list = [];
     this.cards = [];
+    this.ingredients = [];
+    this.ustensils = [];
+    this.appliances = [];
     (async () => {
       await this.loadData();
         this.renderDOM()
@@ -23,6 +26,7 @@ class Index {
     .then((resp) => resp.json())
     .then((data) => {
       this.list = data.list;
+      this.filterRecipes();
     })
     .catch(function(error) {
       console.log(error);
@@ -70,9 +74,43 @@ class Index {
     return ustensilsList.reduce((acc, cur)=>{
       return acc.concat(cur)
     }, [])
-
-    
   }
+
+  // brancher les selects avec la méthode de filtre
+
+  filterByIngredient(ingredients, recipe){
+    if(ingredients.length == 0) {
+      return true
+    }
+    return recipe.ingredients.filter((i) => {
+      return ingredients.includes(i.ingredient)
+    }).length == ingredients.length
+  }
+  
+  filterByUstensils(ustensils, recipe){
+    if(ustensils.length == 0) {
+      return true
+    }
+    return recipe.ustensils.filter((u) => {
+      return ustensils.includes(u)
+    }).length == ustensils.length
+  }
+
+  filterByAppliance (appliances, recipe) {
+    if(appliances.length == 0) {
+      return true
+    }
+    return appliances.includes(recipe.appliance)
+  }
+
+  filterRecipes() {
+    this.filteredRecipes = this.list.filter((recipe) => {
+      return this.filterByIngredient(this.ingredients, recipe) 
+        && this.filterByUstensils(this.ustensils, recipe)
+        && this.filterByAppliance (this.appliances, recipe)
+    })
+  }
+
 
   renderSearchDOM(){
     const search = new Search();
@@ -125,7 +163,7 @@ class Index {
     `
     this.renderSearchDOM();
     this.renderSelectDOM();
-    this.renderRecipeDOM(this.list);
+    this.renderRecipeDOM(this.filteredRecipes);
   }
 };
 
