@@ -20,9 +20,9 @@ class Select {
         })
       
         return(`
-            <div class='datalist-search'>
+            <div>
                 <input list='${this.id}'>
-                <datalist id='${this.id}'>${this.options.map(option => this.renderOption(option))}</datalist> 
+                <datalist class='datalist-search' id='${this.id}'>${this.options.map(option => this.renderOption(option))}</datalist> 
             </div>   
         `)
     }

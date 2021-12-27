@@ -35,12 +35,6 @@ class Index {
 
 	// Gestion des selects
 
-	displayCards() {
-		let divCards = document.querySelector('.cards');
-		divCards.innerHTML = '';
-		this.renderCardsDOM();
-	}
-
 	// Liste des ingredients
 	selectIngredientsList(){
 		let ingredientsList = this.list.map(function(item) {
@@ -121,15 +115,15 @@ class Index {
 	}
 
 	renderSelectDOM(){
-		const selectIngredients = new Select('ingredients', this.selectIngredientsList(), this.filterRecipes());
+		const selectIngredients = new Select('ingredients', this.selectIngredientsList());
 		const $selectIngredients = document.querySelector('#select-ingredients');
 		$selectIngredients.innerHTML = `${selectIngredients.render()}`;
 
-		const selectAppliances = new Select('appliances', this.selectAppliancesList(), this.filterRecipes());
+		const selectAppliances = new Select('appliances', this.selectAppliancesList());
 		const $selectAppliances = document.querySelector('#select-appliances');
 		$selectAppliances.innerHTML = `${selectAppliances.render()}`;
 
-		const selectUstensils = new Select('ustensils', this.selectUstensilsList(), this.filterRecipes());
+		const selectUstensils = new Select('ustensils', this.selectUstensilsList());
 		const $selectUstensils = document.querySelector('#select-ustensils');
 		$selectUstensils.innerHTML = `${selectUstensils.render()}`;
 	}
