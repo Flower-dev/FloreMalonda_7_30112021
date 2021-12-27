@@ -1,7 +1,8 @@
 class Select {
-    constructor( id, options ){
+    constructor( id, options, filterRecipes ){
         this.id = id
         this.options = options
+        this.filterRecipes = filterRecipes
     }
 
     
@@ -11,9 +12,15 @@ class Select {
 
 
     render(){
+
+        document.addEventListener('change', (e) => {
+            if(e.target.classList[0] == 'datalist-search') {
+                this.filterRecipes(e.target.value)
+            }
+        })
       
         return(`
-            <div>
+            <div class='datalist-search'>
                 <input list='${this.id}'>
                 <datalist id='${this.id}'>${this.options.map(option => this.renderOption(option))}</datalist> 
             </div>   
