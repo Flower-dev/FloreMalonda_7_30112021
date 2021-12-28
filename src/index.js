@@ -4,6 +4,8 @@ import Card from './components/Card.js';
 import Search from './components/Search.js';
 import Select from './components/Select.js';
 
+// ------------------------------------------
+
 class Index {
 	constructor(){
 		this.list = [];
@@ -13,7 +15,8 @@ class Index {
 		this.appliances = [];
 		(async () => {
 		await this.loadData();
-			this.renderDOM()
+			this.renderDOM();
+			this.filterRecipes()
 		})() //Immediate function
 	}
 
