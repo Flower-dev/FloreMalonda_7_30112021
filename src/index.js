@@ -158,7 +158,7 @@ class Index {
 			${navhome.render()}
 		`
 		this.renderSearchDOM();
-		this.renderSelectDOM();
+		this.renderSelectDOM(this.filterRecipes());
 		this.renderRecipeDOM(this.filteredRecipes);
 	}
 };

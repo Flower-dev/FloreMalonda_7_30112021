@@ -17,12 +17,12 @@ class Select {
 
     render(){
 
-        document.addEventListener('click', (event) => {
+        document.addEventListener('select', (event) => {
             if(event.target.dataset['filter']){
                 this.filterByTags(event.target.dataset['filter'])
             }
+            console.log(this.filterByTags(event.target.dataset['filter']))
         })
-      
         return(`
             <div>
                 <input list='${this.id}'>
