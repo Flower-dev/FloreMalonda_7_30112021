@@ -23,6 +23,7 @@ class Select {
             }
             console.log(this.filterByTags(event.target.dataset['filter']))
         })
+
         return(`
             <div>
                 <input list='${this.id}'>
@@ -33,3 +34,5 @@ class Select {
 }
 
 export default Select;
+
+// A FAIRE TEST : Mettre un datalist aussi dans les cartes comme dans les selects
