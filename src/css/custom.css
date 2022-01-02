@@ -148,15 +148,87 @@ body main {
   font-size: 20px;
 }
 
-.selectcontainer {
-  padding-top: 5%;
-  display: flex;
-  flex-direction: row;
-  margin-left: 0;
+#select-ingredient, #select-ingredient .select-options, #select-ingredient input {
+  background: #3282F7;
+  color: white;
 }
-.selectcontainer a {
-  text-decoration: none;
-  color: black;
+
+#select-appliance, #select-appliance .select-options, #select-appliance input {
+  background: #68D9A4;
+  color: white;
+}
+
+#select-ustensil, #select-ustensil .select-options, #select-ustensil input {
+  background: #ED6454;
+  color: white;
+}
+
+.select {
+  border-radius: 5px;
+  width: 150px;
+  position: relative;
+  margin: 10px;
+}
+
+.select input {
+  border: none;
+  outline: transparent;
+  width: 100%;
+}
+
+.select input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.select-title {
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.select-title-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10px;
+  width: 100%;
+}
+
+.select-options {
+  padding: 10px 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: auto;
+  align-items: flex-start;
+  position: absolute;
+  z-index: 10;
+  top: 42px;
+  left: 0;
+  width: 100%;
+  flex-grow: 0;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.select-option {
+  padding: 5px;
+  flex-grow: 0;
+}
+
+.chevron-bottom {
+  transform: rotate(90deg);
+}
+
+.chevron-top {
+  transform: rotate(0deg);
+}
+
+.caret {
+  padding: 10px;
+  flex-shrink: 0;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=custom.css.map */

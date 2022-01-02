@@ -73,7 +73,6 @@ class Index {
 	}, [])
 	}
 
-	// brancher les selects avec la méthode de filtre
 
 	filterByIngredient(ingredients, recipe){
 		if(ingredients.length == 0) {
@@ -118,18 +117,17 @@ class Index {
 	}
 
 	renderSelectDOM(){
-		const selectIngredients = new Select('ingredients', this.selectIngredientsList());
-		const $selectIngredients = document.querySelector('#select-ingredients');
-		$selectIngredients.innerHTML = `${selectIngredients.render()}`;
+		const $app = document.querySelector('#app');
+	
+		const selectIngredients = new Select('select-ingredient', 'ingredients', this.selectIngredientsList());
+		const selectAppliances = new Select('select-appliance', 'appliances', this.selectAppliancesList());
+		const selectUstensils = new Select('select-ustensil', 'ustensils', this.selectUstensilsList());
 
-		const selectAppliances = new Select('appliances', this.selectAppliancesList());
-		const $selectAppliances = document.querySelector('#select-appliances');
-		$selectAppliances.innerHTML = `${selectAppliances.render()}`;
-
-		const selectUstensils = new Select('ustensils', this.selectUstensilsList());
-		const $selectUstensils = document.querySelector('#select-ustensils');
-		$selectUstensils.innerHTML = `${selectUstensils.render()}`;
+		$app.appendChild(selectIngredients.render());
+		$app.appendChild(selectAppliances.render());
+		$app.appendChild(selectUstensils.render());
 	}
+
 
 	renderCards(list){
 		return list.map(function(list) {
@@ -158,7 +156,7 @@ class Index {
 			${navhome.render()}
 		`
 		this.renderSearchDOM();
-		this.renderSelectDOM(this.filterRecipes());
+		this.renderSelectDOM()
 		this.renderRecipeDOM(this.filteredRecipes);
 	}
 };
