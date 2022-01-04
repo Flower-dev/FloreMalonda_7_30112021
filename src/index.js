@@ -137,15 +137,15 @@ class Index {
 	}
 
 	renderSelectDOM(){
-		const $app = document.querySelector('#app');
+		const $select = document.querySelector('#select');
 	
 		const selectIngredients = new Select('select-ingredient', 'ingredients', this.selectIngredientsList(), (ingredient) => (this.selectIngredient(ingredient))) ;
 		const selectAppliances = new Select('select-appliance', 'appliances', this.selectAppliancesList(), (appliance) => this.selectAppliance(appliance));
 		const selectUstensils = new Select('select-ustensil', 'ustensils', this.selectUstensilsList(), (ustensil) => this.selectUstensil(ustensil));
 
-		$app.appendChild(selectIngredients.render());
-		$app.appendChild(selectAppliances.render());
-		$app.appendChild(selectUstensils.render());
+		$select.appendChild(selectIngredients.render());
+		$select.appendChild(selectAppliances.render());
+		$select.appendChild(selectUstensils.render());
 	}
 
 
