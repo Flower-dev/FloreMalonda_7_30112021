@@ -3,6 +3,7 @@ import NavHome from './components/NavHome.js';
 import Card from './components/Card.js';
 import Search from './components/Search.js';
 import Select from './components/Select.js';
+// import Tags from './components/Tags.js'
 
 // ------------------------------------------
 
@@ -148,6 +149,18 @@ class Index {
 		$select.appendChild(selectUstensils.render());
 	}
 
+	// renderTagsDOM(){
+	// 	const $tags = document.querySelector('#tags');
+
+	// 	const tagsIngredients = new Tags('tags-ingredient', 'ingredients', (ingredient) => (this.selectIngredient(ingredient)));
+	// 	const tagsAppliances = new Tags('tags-appliance','appliances', (appliance) => this.selectAppliance(appliance));
+	// 	const tagsUstensils = new Tags('tags-ustensil','ustensils', (ustensil) => this.selectUstensil(ustensil));
+
+	// 	$tags.appendChild(tagsIngredients.render());
+	// 	$tags.appendChild(tagsAppliances.render());
+	// 	$tags.appendChild(tagsUstensils.render());
+	// }
+
 
 	renderCards(list){
 		return list.map(function(list) {
@@ -176,7 +189,8 @@ class Index {
 			${navhome.render()}
 		`
 		this.renderSearchDOM();
-		this.renderSelectDOM()
+		// this.renderTagsDOM();
+		this.renderSelectDOM();
 		this.renderRecipeDOM(this.filteredRecipes);
 	}
 };
