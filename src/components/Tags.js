@@ -1,31 +1,29 @@
-// class Tags {
+class Tags {
 
-//     constructor(id, tag, filterRecipes) {
-//         this.id = id;
-//         this.tag = tag;
-//         this.filterTags = tags;
-//         this.filterRecipes = filterRecipes;
-//     }
+    constructor(id, tag, filterRecipes) {
+        this.id = id;
+        this.tag = tag;
+        this.filterTags = tags;
+        this.filterRecipes = filterRecipes;
+    }
 
-//     createTag() {
-//         const parser = new DOMParser()
-//         let dom = 
-//     }
+    // createTag() {
+    //     const parser = new DOMParser()
+    //     let dom = `<div class="tag-content">
+    //             <span>${this.tag}</span>
+    //             <span class="caret cross-bottom">&#215;</span>
+    //         </div>`
+    //     dom = parser.parseFromString(dom, 'text/html').querySelector('.tag-content')
+
+    //     return dom
+    // }
 
    
-//     render(){
-//         let ul= '<ul>';
-//         for (let i = 0; i<this.tags.length; i++){
-//             const li =`
-//                 <li>
-//                     <a href='index.html?id=${this.tags[i]}' data-filter='${this.tags[i]}'>#${this.tags[i]}</a>
-//                 </li>
-//                 `
-//             ul += li   
-//         }
-//         ul += '</ul>'
-//         return ul;
-//     }
-// }
+    render(){
 
-// export default Tags;
+        
+        return (``)
+    }
+}
+
+export default Tags;
