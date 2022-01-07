@@ -78,11 +78,11 @@ class Select {
     }
 
     renderTags(option){
-        var p = document.createElement("div");
-        p.innerText = option
-        p.classList.add('MyClass');
-        let toto = document.getElementById('tags')
-        toto.appendChild(p)
+        var tags = document.createElement('div');
+        var tag = document.getElementById('tags')
+        tags.innerText = option
+        tags.classList.add('MyClass');
+        tag.appendChild(tags)
     }
 
     render() {

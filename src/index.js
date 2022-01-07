@@ -125,6 +125,15 @@ class Index {
 		this.renderRecipeDOM(this.filteredRecipes)
 	}
 
+	// sup tags
+	deleteIngredientTag(ingredient) {
+		this.ustensils.filter(ingredient)
+		this.filterRecipes()
+		this.renderRecipeDOM(this.filteredRecipes)
+	}
+
+	
+
 
 	// render des éléments du DOM 
 
@@ -139,7 +148,7 @@ class Index {
 	renderSelectDOM(){
 		const $select = document.querySelector('#select');
 	
-		const selectIngredients = new Select('select-ingredient', 'ingredients', this.selectIngredientsList(), (ingredient) => (this.selectIngredient(ingredient))) ;
+		const selectIngredients = new Select('select-ingredient', 'ingredients', this.selectIngredientsList(), (ingredient) => (this.selectIngredient(ingredient)), (ingredient) => (this.deleteIngredientTag(ingredient))) ;
 		const selectAppliances = new Select('select-appliance', 'appliances', this.selectAppliancesList(), (appliance) => this.selectAppliance(appliance));
 		const selectUstensils = new Select('select-ustensil', 'ustensils', this.selectUstensilsList(), (ustensil) => this.selectUstensil(ustensil));
 
