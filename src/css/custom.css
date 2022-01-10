@@ -230,10 +230,9 @@ body main {
   cursor: pointer;
 }
 
-.MyClass {
+#tags .tag {
   height: 22px;
   top: 355px;
-  background-color: #3282F7;
   color: white;
   box-sizing: border-box;
   border-radius: 11px;
@@ -245,6 +244,18 @@ body main {
   line-height: 23px;
   margin-top: 2%;
   margin-right: 20px;
+}
+
+#tags .ingredient {
+  background-color: #3282F7;
+}
+
+#tags .appliance {
+  background-color: #68D9A4;
+}
+
+#tags .ustensil {
+  background-color: #ED6454;
 }
 
 /*# sourceMappingURL=custom.css.map */

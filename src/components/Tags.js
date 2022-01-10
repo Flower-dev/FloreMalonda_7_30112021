@@ -1,23 +1,25 @@
-// class Tags {
+class Tags {
 
-//     constructor(id, option){
-//         this.id = id
-//         this.option = option
-//     }
+    constructor(id, option, type, deleteElement){
+        this.id = id
+        this.option = option
+        this.type = type
+        this.deleteElement = deleteElement
+    }
 
-//     renderTags(option) {
-//         var tags = document.createElement('div');
-//         var tag = document.getElementById('tags')
-//         tags.innerText = option
-//         tags.classList.add('MyClass');
-//         tag.appendChild(tags)
-//     }
+    
+    render(){
+        
+        var tag = document.createElement('div');
+        tag.innerText = this.option
+        tag.classList.add('tag')
+        tag.classList.add(this.type)
+        tag.addEventListener('click', () => {
+            this.deleteElement(tag, this.option)
+        })
+        return tag
 
-//     render(){
-//         this.tag = document.querySelector(`#${this.id}`);
-//         ;
-//         return this.tag;
-//     }
+    }
 
-// }
-// export default Tags
+}
+export default Tags

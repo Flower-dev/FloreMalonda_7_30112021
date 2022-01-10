@@ -3,7 +3,7 @@ import NavHome from './components/NavHome.js';
 import Card from './components/Card.js';
 import Search from './components/Search.js';
 import Select from './components/Select.js';
-// import Tags from './components/Tags.js'
+import Tags from './components/Tags.js'
 
 // ------------------------------------------
 
@@ -112,30 +112,39 @@ class Index {
 		this.ingredients.push(ingredient)
 		this.filterRecipes()
 		this.renderRecipeDOM(this.filteredRecipes)
+		const tag = new Tags('', ingredient, 'ingredient', (tagElement, ingredient) => this.deleteIngredientTag(tagElement, ingredient))
+		document.querySelector('#tags').appendChild(tag.render())
+	}
+
+	// sup tags ingredient
+	deleteIngredientTag(tagElement, ingredient) {
+		document.querySelector('#tags').removeChild(tagElement)
+		this.ingredients = this.ingredients.filter((i) => {
+			return i != ingredient
+		})
+		this.filterRecipes()
+		this.renderRecipeDOM(this.filteredRecipes)
 	}
 
 	selectAppliance(appliance) {
 		this.appliances.push(appliance)
 		this.filterRecipes()
 		this.renderRecipeDOM(this.filteredRecipes)
+		const tag = new Tags('', appliance, 'appliance')
+		document.querySelector('#tags').appendChild(tag.render())
 	}
 
 	selectUstensil(ustensil) {
 		this.ustensils.push(ustensil)
 		this.filterRecipes()
 		this.renderRecipeDOM(this.filteredRecipes)
-	}
-
-	// sup tags
-	deleteIngredientTag(ingredient) {
-		this.ustensils.filter(ingredient)
-		this.filterRecipes()
-		this.renderRecipeDOM(this.filteredRecipes)
+		const tag = new Tags('', ustensil, 'ustensil')
+		document.querySelector('#tags').appendChild(tag.render())
 	}
 
 	
 
-
+	
 	// render des éléments du DOM 
 
 	renderSearchDOM(){
@@ -157,18 +166,6 @@ class Index {
 		$select.appendChild(selectAppliances.render());
 		$select.appendChild(selectUstensils.render());
 	}
-
-	// renderTagsDOM(){
-	// 	const $tag = document.querySelector('#tags');
-	
-	// 	const tagsIngredients = new Tags('tag-ingredient', 'ingredients', this.selectIngredientsList(), (ingredient) => (this.selectIngredient(ingredient)), (ingredient) => (this.deleteIngredientTag(ingredient))) ;
-	// 	const tagsAppliances = new Tags('tag-appliance', 'appliances', this.selectAppliancesList(), (appliance) => this.selectAppliance(appliance));
-	// 	const tagsUstensils = new Tags('tag-ustensil', 'ustensils', this.selectUstensilsList(), (ustensil) => this.selectUstensil(ustensil));
-
-	// 	$tag.append(tagsIngredients.render());
-	// 	$tag.append(tagsAppliances.render());
-	// 	$tag.append(tagsUstensils.render());
-	// }
 
 	renderCards(list){
 		return list.map(function(list) {
@@ -198,7 +195,6 @@ class Index {
 		`
 		this.renderSearchDOM();
 		this.renderSelectDOM();
-		// this.renderTagsDOM();
 		this.renderRecipeDOM(this.filteredRecipes);
 	}
 };

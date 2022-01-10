@@ -17,7 +17,6 @@ class Select {
             option.textContent = o;
             option.addEventListener('click', () => {
                 this.filterRecipes(o)
-                this.renderTags(o)
             })
             return option;
         });
@@ -75,14 +74,6 @@ class Select {
         } else {
             this.select.style.width = '150px';
         }
-    }
-
-    renderTags(option){
-        var tags = document.createElement('div');
-        var tag = document.getElementById('tags')
-        tags.innerText = option
-        tags.classList.add('MyClass');
-        tag.appendChild(tags)
     }
 
     render() {
