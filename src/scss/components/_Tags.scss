@@ -1,16 +1,24 @@
 #tags .tag {
     height: 37px;
-    color: white;
     box-sizing: border-box;
     border-radius: 5px;
-    padding-inline-start: 5px;
-    padding-inline-end: 5px;
+    padding-inline-start: 7px;
+    padding-inline-end: 7px;
     font-style: normal;
     text-align: center;
-    font-size: 12px;
+    font-size: 14px;
     margin-top: 2%;
     margin-right: 20px;
-    padding-top: 10px;
+    padding-top: 8px;
+    display: flex;
+    color: white;
+}
+
+#tags .cross {
+    width: 20px;
+    height: 20px;
+    padding-left: 6px;
+    padding-top: 4px;
 }
 
 #tags .ingredient {

@@ -70,9 +70,9 @@ class Select {
         $selectTitle.innerHTML = ''
         $selectTitle.appendChild($newSelectTitleChild)
         if (this.opened) {
-            this.select.style.width = '250px';
+            this.select.style.width = '400px';
         } else {
-            this.select.style.width = '150px';
+            this.select.style.width = '170px';
         }
     }
 

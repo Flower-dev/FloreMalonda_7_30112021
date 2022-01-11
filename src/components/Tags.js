@@ -11,7 +11,8 @@ class Tags {
     render(){
         
         var tag = document.createElement('div');
-        tag.innerText = this.option
+        tag.innerText = this.option 
+        tag.innerHTML += `<img src='/public/img/cross.svg' alt='cross' class='cross'>`
         tag.classList.add('tag')
         tag.classList.add(this.type)
         tag.addEventListener('click', () => {
@@ -22,4 +23,4 @@ class Tags {
     }
 
 }
-export default Tags
+export default Tags;
