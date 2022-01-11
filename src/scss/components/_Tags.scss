@@ -1,17 +1,16 @@
 #tags .tag {
-    height: 22px;
-    top: 355px;
+    height: 37px;
     color: white;
     box-sizing: border-box;
-    border-radius: 11px;
+    border-radius: 5px;
     padding-inline-start: 5px;
     padding-inline-end: 5px;
     font-style: normal;
     text-align: center;
     font-size: 12px;
-    line-height: 23px;
     margin-top: 2%;
-    margin-right: 20px;  
+    margin-right: 20px;
+    padding-top: 10px;
 }
 
 #tags .ingredient {

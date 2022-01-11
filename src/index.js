@@ -108,6 +108,7 @@ class Index {
 		})
 	}
 
+	// option selectionnée select ingredients
 	selectIngredient(ingredient) {
 		this.ingredients.push(ingredient)
 		this.filterRecipes()
@@ -116,7 +117,7 @@ class Index {
 		document.querySelector('#tags').appendChild(tag.render())
 	}
 
-	// sup tags ingredient
+	// sup tag ingredients
 	deleteIngredientTag(tagElement, ingredient) {
 		document.querySelector('#tags').removeChild(tagElement)
 		this.ingredients = this.ingredients.filter((i) => {
@@ -126,24 +127,46 @@ class Index {
 		this.renderRecipeDOM(this.filteredRecipes)
 	}
 
+	// option selectionnée select appliances
 	selectAppliance(appliance) {
 		this.appliances.push(appliance)
 		this.filterRecipes()
 		this.renderRecipeDOM(this.filteredRecipes)
-		const tag = new Tags('', appliance, 'appliance')
+		const tag = new Tags('', appliance, 'appliance', (tagElement, appliance) => this.deleteApplianceTag(tagElement, appliance))
 		document.querySelector('#tags').appendChild(tag.render())
 	}
 
+	// sup tag appliances
+	deleteApplianceTag(tagElement, appliance) {
+		document.querySelector('#tags').removeChild(tagElement)
+		this.appliances = this.appliances.filter((a) => {
+			return a != appliance
+		})
+		this.filterRecipes()
+		this.renderRecipeDOM(this.filteredRecipes)
+	}
+
+	// option selectionnée select ustensils
 	selectUstensil(ustensil) {
 		this.ustensils.push(ustensil)
 		this.filterRecipes()
 		this.renderRecipeDOM(this.filteredRecipes)
-		const tag = new Tags('', ustensil, 'ustensil')
+		const tag = new Tags('', ustensil, 'ustensil', (tagElement, ustensil) => this.deleteUstensilTag(tagElement, ustensil))
 		document.querySelector('#tags').appendChild(tag.render())
 	}
 
-	
+	// sup tag ustensils
+	deleteUstensilTag(tagElement, ustensil) {
+		document.querySelector('#tags').removeChild(tagElement)
+		this.ustensils = this.ustensils.filter((u) => {
+			return u != ustensil
+		})
+		this.filterRecipes()
+		this.renderRecipeDOM(this.filteredRecipes)
+	}
 
+
+	// ----------------------------------------
 	
 	// render des éléments du DOM 
 
