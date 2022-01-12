@@ -223,3 +223,19 @@ class Index {
 };
 
 new Index();
+
+// Scénario nominal
+// 1.​ ​Le cas d’utilisation commence lorsque​ l’utilisateur​ entre au moins ​3 caractères​ dans la
+// 	  barre de recherche principale.
+// 2.​ ​​Le système ​recherche des recettes correspondant à l’entrée utilisateur dans :​le titre de
+//     la recette, la liste des ingrédients de la recette, la description de la recette.
+// 3.​ ​ ​L’interface​ est actualisée avec les résultats de recherche
+// 4.​ ​Les champs de recherche avancée sont actualisés avec les informations ​ingrédients​, ustensiles​, ​appareil​ des différentes recettes restantes
+// 5.​ ​​L’utilisateur​précisesarecherchegrâceàl’undeschamps:​ingrédients​,​ustensiles​, appareil​.
+// 6.​ ​Au fur et à mesure du remplissage les mots clés ne correspondant pas à la frappe 
+//    dans le champ disparaissent. Par exemple, si l’utilisateur entre “coco” dans la liste d’ingrédients, seuls vont rester “noix de coco” et “lait de coco”.
+// 7.​ ​L’utilisateur​ choisit un mot clé dans le champ
+// 8.​ ​Le mot clé apparaît sous forme de ​tag​ sous la recherche principale
+// 9.​ ​Les résultats de recherche sont actualisés, ainsi que les éléments disponibles dans les champs de recherche avancée
+// 10.​ ​L’utilisateur sélectionne une recette
+          
