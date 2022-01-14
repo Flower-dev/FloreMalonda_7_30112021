@@ -37,6 +37,17 @@ class Index {
 		});
 	}
 
+	// Gestion du search 
+
+// partie à retravailler
+    // filterGlobalRecipe(value) {
+    //     if (value === '' || value.length < 3) {
+    //         this.filteredGlogalRecipe = this.recipes
+    //         return
+    //     }
+    //     this.filteredGlogalRecipe = this.recipes.filter((o) => o.toLowerCase().trim().includes(value))
+    // }
+
 	// Gestion des selects
 
 	// Liste des ingredients
