@@ -1,7 +1,17 @@
 class Search {
-    constructor(){}
+    constructor(onChange){
+        this.onChange = onChange
+    }
+
+    initEvent() {
+        document.querySelector('.searchTerm').addEventListener('input', (e) => {
+           this.onChange(e.target.value)
+        })
+    }
 
     render(){
+
+        
 
         return (`
             <div class="searchbar">

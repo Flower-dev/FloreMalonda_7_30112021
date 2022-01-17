@@ -14,6 +14,7 @@ class Index {
 		this.ingredients = [];
 		this.ustensils = [];
 		this.appliances = [];
+		this.query = '';
 		(async () => {
 		await this.loadData();
 			this.renderDOM();
@@ -40,13 +41,19 @@ class Index {
 	// Gestion du search 
 
 // partie à retravailler
-    // filterGlobalRecipe(value) {
-    //     if (value === '' || value.length < 3) {
-    //         this.filteredGlogalRecipe = this.recipes
-    //         return
-    //     }
-    //     this.filteredGlogalRecipe = this.recipes.filter((o) => o.toLowerCase().trim().includes(value))
-    // }
+    filterGlobalRecipe(value, recipe) {
+        if (value === '' || value.length < 3) {
+            return true
+        } 
+		return recipe.name.toLowerCase().trim().includes(value) ||
+		recipe.ingredients.filter((i) => {
+			return i.ingredient.toLowerCase().includes(value.toLowerCase())
+		}).length > 0 ||
+		recipe.appliance.toLowerCase().includes(value.toLowerCase()) ||
+		recipe.ustensils.filter((u) => {
+			return u.toLowerCase().includes(value.toLowerCase())
+		}).length > 0
+    }
 
 	// Gestion des selects
 
@@ -57,18 +64,16 @@ class Index {
 				return subItem.ingredient
 			});
 		return tmp;
-	});
-
-		return ingredientsList.reduce((acc, cur)=>{
-			return acc.concat(cur)
-		}, [])
+	}).flat();
+	return [...new Set(ingredientsList)]
 	}
 
 	// Liste des appliances
 	selectAppliancesList() {
-		return this.list.map(function(item) {
+		const appliances = this.list.map(function(item) {
 			return item.appliance
 		});
+		return [...new Set(appliances)]
 	}
 
 	// Liste des ustensiles 
@@ -78,11 +83,9 @@ class Index {
 			return subItem
 		});
 		return tmp;
-	});
+	}).flat();
 
-	return ustensilsList.reduce((acc, cur)=>{
-		return acc.concat(cur)
-	}, [])
+	return [...new Set(ustensilsList)]
 	}
 
 
@@ -113,7 +116,8 @@ class Index {
 
 	filterRecipes() {
 		this.filteredRecipes = this.list.filter((recipe) => {
-			return this.filterByIngredient(this.ingredients, recipe) 
+			return this.filterGlobalRecipe(this.query, recipe)
+			&& this.filterByIngredient(this.ingredients, recipe) 
 			&& this.filterByUstensils(this.ustensils, recipe)
 			&& this.filterByAppliance (this.appliances, recipe)
 		})
@@ -182,11 +186,17 @@ class Index {
 	// render des éléments du DOM 
 
 	renderSearchDOM(){
-		const search = new Search();
+		const search = new Search((value) => {
+			this.query = value
+			this.filterRecipes()
+			this.renderRecipeDOM(this.filteredRecipes)
+			console.log(value)
+		});
 		const $search = document.querySelector('#search');
 		$search.innerHTML = `
 			${search.render()}
 		`
+		search.initEvent()
 	}
 
 	renderSelectDOM(){
@@ -235,18 +245,3 @@ class Index {
 
 new Index();
 
-// Scénario nominal
-// 1.​ ​Le cas d’utilisation commence lorsque​ l’utilisateur​ entre au moins ​3 caractères​ dans la
-// 	  barre de recherche principale.
-// 2.​ ​​Le système ​recherche des recettes correspondant à l’entrée utilisateur dans :​le titre de
-//     la recette, la liste des ingrédients de la recette, la description de la recette.
-// 3.​ ​ ​L’interface​ est actualisée avec les résultats de recherche
-// 4.​ ​Les champs de recherche avancée sont actualisés avec les informations ​ingrédients​, ustensiles​, ​appareil​ des différentes recettes restantes
-// 5.​ ​​L’utilisateur​précisesarecherchegrâceàl’undeschamps:​ingrédients​,​ustensiles​, appareil​.
-// 6.​ ​Au fur et à mesure du remplissage les mots clés ne correspondant pas à la frappe 
-//    dans le champ disparaissent. Par exemple, si l’utilisateur entre “coco” dans la liste d’ingrédients, seuls vont rester “noix de coco” et “lait de coco”.
-// 7.​ ​L’utilisateur​ choisit un mot clé dans le champ
-// 8.​ ​Le mot clé apparaît sous forme de ​tag​ sous la recherche principale
-// 9.​ ​Les résultats de recherche sont actualisés, ainsi que les éléments disponibles dans les champs de recherche avancée
-// 10.​ ​L’utilisateur sélectionne une recette
-          
