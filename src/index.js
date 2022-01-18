@@ -40,7 +40,7 @@ class Index {
 
 	// Gestion du search 
 
-// partie à retravailler
+
     filterGlobalRecipe(value, recipe) {
         if (value === '' || value.length < 3) {
             return true

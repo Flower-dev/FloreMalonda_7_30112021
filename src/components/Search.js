@@ -15,7 +15,7 @@ class Search {
 
         return (`
             <div class="searchbar">
-                <input type="text" class="searchTerm" placeholder='Rechercher un ingrédient, appareil, ustensiles ou une recette'>
+                <input type="text" class="searchTerm" placeholder='Rechercher un ingrédient, appareil, ustensile ou une recette'>
                 <button type="submit" class="searchButton">
                     <i class="fa fa-search"></i>
                 </button>
