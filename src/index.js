@@ -38,24 +38,8 @@ class Index {
 		});
 	}
 
-	// Gestion du search 
 
-
-    filterGlobalRecipe(value, recipe) {
-        if (value === '' || value.length < 3) {
-            return true
-        } 
-		return recipe.name.toLowerCase().trim().includes(value) ||
-		recipe.ingredients.filter((i) => {
-			return i.ingredient.toLowerCase().includes(value.toLowerCase())
-		}).length > 0 ||
-		recipe.appliance.toLowerCase().includes(value.toLowerCase()) ||
-		recipe.ustensils.filter((u) => {
-			return u.toLowerCase().includes(value.toLowerCase())
-		}).length > 0
-    }
-
-	// Gestion des selects
+	//  ------------- Gestion des selects --------------- 
 
 	// Liste des ingredients
 	selectIngredientsList(){
@@ -89,6 +73,25 @@ class Index {
 	}
 
 
+	// --------------- Algorithme de recherche -----------------
+
+	// recherche via la search bar (titres, ustensils, ingredients, appliances)
+
+    filterGlobalRecipe(value, recipe) {
+        if (value === '' || value.length < 3) {
+            return true
+        } 
+		return recipe.name.toLowerCase().trim().includes(value) ||
+		recipe.ingredients.filter((i) => {
+			return i.ingredient.toLowerCase().includes(value.toLowerCase())
+		}).length > 0 ||
+		recipe.appliance.toLowerCase().includes(value.toLowerCase()) ||
+		recipe.ustensils.filter((u) => {
+			return u.toLowerCase().includes(value.toLowerCase())
+		}).length > 0
+    }
+
+	// recherche par ingredient
 	filterByIngredient(ingredients, recipe){
 		if(ingredients.length == 0) {
 			return true
@@ -98,6 +101,7 @@ class Index {
 		}).length == ingredients.length
 	}
 
+	// recherche par ustensile
 	filterByUstensils(ustensils, recipe){
 		if(ustensils.length == 0) {
 			return true
@@ -107,6 +111,7 @@ class Index {
 		}).length == ustensils.length
 	}
 
+	// recherche par appliance
 	filterByAppliance (appliances, recipe) {
 		if(appliances.length == 0) {
 			return true
@@ -114,6 +119,7 @@ class Index {
 		return appliances.includes(recipe.appliance)
 	}
 
+	// recherche globale
 	filterRecipes() {
 		this.filteredRecipes = this.list.filter((recipe) => {
 			return this.filterGlobalRecipe(this.query, recipe)
@@ -131,6 +137,8 @@ class Index {
 		const tag = new Tags('', ingredient, 'ingredient', (tagElement, ingredient) => this.deleteIngredientTag(tagElement, ingredient))
 		document.querySelector('#tags').appendChild(tag.render())
 	}
+
+	// ---------------------- affichage et suppression des tags -------------------------
 
 	// sup tag ingredients
 	deleteIngredientTag(tagElement, ingredient) {
@@ -180,10 +188,8 @@ class Index {
 		this.renderRecipeDOM(this.filteredRecipes)
 	}
 
-
-	// ----------------------------------------
 	
-	// render des éléments du DOM 
+	// ----------------------- render des éléments du DOM -------------------------------
 
 	renderSearchDOM(){
 		const search = new Search((value) => {
