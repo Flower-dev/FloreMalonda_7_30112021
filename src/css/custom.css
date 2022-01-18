@@ -204,12 +204,16 @@ body main {
   left: 0;
   width: 100%;
   flex-grow: 0;
+  flex-shrink: 0;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
 
 .select-option {
   padding-right: 30px;
+  width: 50%;
+  flex-grow: 0;
+  flex-shrink: 0;
 }
 
 .chevron-bottom {
