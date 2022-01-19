@@ -169,7 +169,7 @@ body main {
   width: 100%;
 }
 .select input ::placeholder {
-  color: #FFFFFF;
+  color: white;
   opacity: 50%;
 }
 
