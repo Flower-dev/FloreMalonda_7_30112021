@@ -41,11 +41,11 @@ class Index {
 
 	//  ------------- Gestion des selects --------------- 
 
-	// Liste des ingredients
+	// Liste des ingredients dans tableau des recettes
 	selectIngredientsList(){
 
 		// TODO si this.ingredients est vide alors on cherche dans la bdd
-		// if .....
+		// if(ingredients = []){
 			let ingredientsList = this.list.map(function(item) {
 				let tmp = item.ingredients.map(function(subItem){
 					return subItem.ingredient
@@ -73,10 +73,10 @@ class Index {
 		// la liste ci-dessous
 
 	}).flat();
-	return [...new Set(ingredientsList)]
+	return [...new Set(ingredientsList)] //sup doublons
 	}
 
-	// Liste des appliances
+	// Liste des appliances dans tableau des recettes
 	selectAppliancesList() {
 		const appliances = this.list.map(function(item) {
 			return item.appliance
@@ -84,7 +84,7 @@ class Index {
 		return [...new Set(appliances)]
 	}
 
-	// Liste des ustensiles 
+	// Liste des ustensiles dans tableau des recettes
 	selectUstensilsList() {
 	let ustensilsList = this.list.map(function(item) {
 		let tmp = item.ustensils.map(function(subItem){
