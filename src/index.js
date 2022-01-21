@@ -44,36 +44,23 @@ class Index {
 	// Liste des ingredients dans tableau des recettes
 	selectIngredientsList(){
 
-		// TODO si this.ingredients est vide alors on cherche dans la bdd
-		// if(ingredients = []){
+		if(this.ingredients = []){
 			let ingredientsList = this.list.map(function(item) {
 				let tmp = item.ingredients.map(function(subItem){
 					return subItem.ingredient
 				});
 			return tmp;
-
-		// TODO sinon on cherche dans la bdd, mais on filtre uniquement 
-		// else ....
-		// sur les recettes qui matchent les ingredients dans this.ingredients
-		// recipe = this.list
-	    // this.ingredients.map(ingredient)
-	    // 		recipe = filterByIngredient(ingredient, recipe)
-		// ici recipe contient les recipes filtrées
-
-		// TODO maintenant on cherche à récupérer la liste des ingr de ces recipes
-		// let ingredientsList = this.recipe.map(function(item) {
-		// 	let tmp = item.ingredients.map(function(subItem){
-		// 		return subItem.ingredient
-		// 	});
-		// return tmp;
-
-
-		// TODO: en dehors de cette fonction
-		// faire une fonction qui réécrit le dom du select avec uniquement
-		// la liste ci-dessous
-
-	}).flat().sort();
-	return [...new Set(ingredientsList)] //sup doublons
+			}).flat().sort();
+			return [...new Set(ingredientsList)]
+		} else {
+			let ingredientsList = this.filteredRecipes.map(function(item) {
+				let tmp = item.ingredients.map(function(subItem){
+					return subItem.ingredient
+				});
+			return tmp;
+			}).flat().sort();
+			return [...new Set(ingredientsList)]
+		} 
 	}
 
 	// Liste des appliances dans tableau des recettes
