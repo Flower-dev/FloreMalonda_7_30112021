@@ -72,7 +72,7 @@ class Index {
 		// faire une fonction qui réécrit le dom du select avec uniquement
 		// la liste ci-dessous
 
-	}).flat();
+	}).flat().sort();
 	return [...new Set(ingredientsList)] //sup doublons
 	}
 
@@ -80,7 +80,7 @@ class Index {
 	selectAppliancesList() {
 		const appliances = this.list.map(function(item) {
 			return item.appliance
-		});
+		}).sort();
 		return [...new Set(appliances)]
 	}
 
@@ -91,7 +91,7 @@ class Index {
 			return subItem
 		});
 		return tmp;
-	}).flat();
+	}).flat().sort();
 
 	return [...new Set(ustensilsList)]
 	}
