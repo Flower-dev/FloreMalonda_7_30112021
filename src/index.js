@@ -39,7 +39,7 @@ class Index {
 	}
 
 
-	//  ------------- Gestion des selects --------------- 
+	//  ------------- Gestion des selects avec des boucles for --------------- 
 
 	// Liste des ingredients dans tableau des recettes
 	selectIngredientsList(){
@@ -73,7 +73,7 @@ class Index {
 	} // TO DO fait le 24.01.2022 - sup les doublons et trier par ordre alphabetique .sort()
 
 
-	// --------------- Algorithme de recherche -----------------
+	// --------------- Algorithme de recherche avec des boucles for -----------------
 
 	// recherche via la search bar (titres, ustensils, ingredients, appliances)
 
@@ -86,9 +86,13 @@ class Index {
 			if (element.ingredient.toLowerCase().includes(value)) {
 				return true
 			}
-		}
+		} 
+		// recipe.appliance.toLowerCase().includes(value.toLowerCase()) ||
+		// recipe.ustensils.filter((u) => {
+		// 	return u.toLowerCase().includes(value.toLowerCase())
+		// }).length > 0
 		return false
-    } // TO DO : fait le 24.01.2022 
+    } // fait le 24.01.2022 
 
 	// recherche par ingredient
 	filterByIngredient(ingredients, recipe){ 
