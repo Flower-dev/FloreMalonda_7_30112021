@@ -43,29 +43,19 @@ class Index {
 
 	// Liste des ingredients dans tableau des recettes
 	selectIngredientsList(){
-
-		if(this.ingredients = []){
-			let ingredientsList = this.list.map(function(item) {
-				let tmp = item.ingredients.map(function(subItem){
-					return subItem.ingredient
-				});
-			return tmp;
-			}).flat().sort();
-			return [...new Set(ingredientsList)]
-		} else {
-			let ingredientsList = this.filteredRecipes.map(function(item) {
-				let tmp = item.ingredients.map(function(subItem){
-					return subItem.ingredient
-				});
-			return tmp;
-			}).flat().sort();
-			return [...new Set(ingredientsList)]
-		} 
+		let ingredientsList = this.filteredRecipes.map(function(item) {
+			let tmp = item.ingredients.map(function(subItem){
+				return subItem.ingredient
+			});
+		return tmp;
+		}).flat().sort();
+		return [...new Set(ingredientsList)]
+		
 	}
 
 	// Liste des appliances dans tableau des recettes
 	selectAppliancesList() {
-		const appliances = this.list.map(function(item) {
+		const appliances = this.filteredRecipes.map(function(item) {
 			return item.appliance
 		}).sort();
 		return [...new Set(appliances)]
@@ -73,7 +63,7 @@ class Index {
 
 	// Liste des ustensiles dans tableau des recettes
 	selectUstensilsList() {
-	let ustensilsList = this.list.map(function(item) {
+	let ustensilsList = this.filteredRecipes.map(function(item) {
 		let tmp = item.ustensils.map(function(subItem){
 			return subItem
 		});
@@ -146,6 +136,7 @@ class Index {
 	selectIngredient(ingredient) {
 		this.ingredients.push(ingredient)
 		this.filterRecipes()
+		this.renderSelectDOM()
 		this.renderRecipeDOM(this.filteredRecipes)
 		const tag = new Tags('', ingredient, 'ingredient', (tagElement, ingredient) => this.deleteIngredientTag(tagElement, ingredient))
 		document.querySelector('#tags').appendChild(tag.render())
@@ -159,6 +150,7 @@ class Index {
 			return i != ingredient
 		})
 		this.filterRecipes()
+		this.renderSelectDOM()
 		this.renderRecipeDOM(this.filteredRecipes)
 	}
 
@@ -166,6 +158,7 @@ class Index {
 	selectAppliance(appliance) {
 		this.appliances.push(appliance)
 		this.filterRecipes()
+		this.renderSelectDOM()
 		this.renderRecipeDOM(this.filteredRecipes)
 		const tag = new Tags('', appliance, 'appliance', (tagElement, appliance) => this.deleteApplianceTag(tagElement, appliance))
 		document.querySelector('#tags').appendChild(tag.render())
@@ -178,6 +171,7 @@ class Index {
 			return a != appliance
 		})
 		this.filterRecipes()
+		this.renderSelectDOM()
 		this.renderRecipeDOM(this.filteredRecipes)
 	}
 
@@ -185,6 +179,7 @@ class Index {
 	selectUstensil(ustensil) {
 		this.ustensils.push(ustensil)
 		this.filterRecipes()
+		this.renderSelectDOM()
 		this.renderRecipeDOM(this.filteredRecipes)
 		const tag = new Tags('', ustensil, 'ustensil', (tagElement, ustensil) => this.deleteUstensilTag(tagElement, ustensil))
 		document.querySelector('#tags').appendChild(tag.render())
@@ -197,6 +192,7 @@ class Index {
 			return u != ustensil
 		})
 		this.filterRecipes()
+		this.renderSelectDOM()
 		this.renderRecipeDOM(this.filteredRecipes)
 	}
 
@@ -208,7 +204,8 @@ class Index {
 			this.query = value
 			this.filterRecipes()
 			this.renderRecipeDOM(this.filteredRecipes)
-			console.log(value)
+			this.renderSelectDOM()
+	
 		});
 		const $search = document.querySelector('#search');
 		$search.innerHTML = `
@@ -219,7 +216,7 @@ class Index {
 
 	renderSelectDOM(){
 		const $select = document.querySelector('#select');
-	
+		$select.innerHTML = '';
 		const selectIngredients = new Select('select-ingredient', 'ingredients', this.selectIngredientsList(), (ingredient) => (this.selectIngredient(ingredient)), (ingredient) => (this.deleteIngredientTag(ingredient))) ;
 		const selectAppliances = new Select('select-appliance', 'appliances', this.selectAppliancesList(), (appliance) => this.selectAppliance(appliance));
 		const selectUstensils = new Select('select-ustensil', 'ustensils', this.selectUstensilsList(), (ustensil) => this.selectUstensil(ustensil));
