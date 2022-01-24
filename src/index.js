@@ -41,36 +41,36 @@ class Index {
 
 	//  ------------- Gestion des selects --------------- 
 
-	// Liste des ingredients
+	// Liste des ingredients dans tableau des recettes
 	selectIngredientsList(){
-		let ingredientsList = this.list.map(function(item) {
-			let tmp = item.ingredients.map(function(subItem){
-				return subItem.ingredient
-			});
-		return tmp;
-	}).flat();
-	return [...new Set(ingredientsList)]
-	}
+		const ingOptions = []
+		for (let index = 0; index < this.list.length; index++) {
+			for (let i = 0; i < this.list[index].ingredients.length; i++) {
+				ingOptions.push(this.list[index].ingredients[i].ingredient)
+			}
+		};
+		return [...new Set(ingOptions)] 
+	} // TO DO fait le 24.01.2022 - sup les doublons et trier par ordre alphabetique .sort()
 
-	// Liste des appliances
+	// Liste des appliances dans tableau des recettes
 	selectAppliancesList() {
-		const appliances = this.list.map(function(item) {
-			return item.appliance
-		});
-		return [...new Set(appliances)]
-	}
+		const appOptions = []
+		for (let index = 0; index < this.list.length; index++) {
+			appOptions.push(this.list[index].appliance)
+		}
+		return [...new Set(appOptions)]
+	} // TO DO fait le 24.01.2022 - sup les doublons et trier par ordre alphabetique .sort()
 
-	// Liste des ustensiles 
+	// Liste des ustensiles dans tableau des recettes
 	selectUstensilsList() {
-	let ustensilsList = this.list.map(function(item) {
-		let tmp = item.ustensils.map(function(subItem){
-			return subItem
-		});
-		return tmp;
-	}).flat();
-
-	return [...new Set(ustensilsList)]
+	const ustOptions = []
+	for (let index = 0; index < this.list.length; index++) {
+		for (let i = 0; i < this.list[index].ustensils.length; i++) {
+            ustOptions.push(this.list[index].ustensils[i])
+        }
 	}
+	return [...new Set(ustOptions)]
+	} // TO DO fait le 24.01.2022 - sup les doublons et trier par ordre alphabetique .sort()
 
 
 	// --------------- Algorithme de recherche -----------------
@@ -78,28 +78,27 @@ class Index {
 	// recherche via la search bar (titres, ustensils, ingredients, appliances)
 
     filterGlobalRecipe(value, recipe) {
-        if (value === '' || value.length < 3) {
-            return true
-        } 
-		return recipe.name.toLowerCase().trim().includes(value) ||
-		recipe.ingredients.filter((i) => {
-			return i.ingredient.toLowerCase().includes(value.toLowerCase())
-		}).length > 0 ||
-		recipe.appliance.toLowerCase().includes(value.toLowerCase()) ||
-		recipe.ustensils.filter((u) => {
-			return u.toLowerCase().includes(value.toLowerCase())
-		}).length > 0
-    }
+		if (recipe.name.toLowerCase().includes(value) || recipe.description.toLowerCase().includes(value)) {
+			return true
+		}
+		for (let index = 0; index < recipe.ingredients.length; index++) {
+			const element = recipe.ingredients[index]
+			if (element.ingredient.toLowerCase().includes(value)) {
+				return true
+			}
+		}
+		return false
+    } // TO DO : fait le 24.01.2022 
 
 	// recherche par ingredient
-	filterByIngredient(ingredients, recipe){
+	filterByIngredient(ingredients, recipe){ 
 		if(ingredients.length == 0) {
 			return true
 		}
 		return recipe.ingredients.filter((i) => {
 			return ingredients.includes(i.ingredient)
 		}).length == ingredients.length
-	}
+	} // TO DO 
 
 	// recherche par ustensile
 	filterByUstensils(ustensils, recipe){
@@ -109,7 +108,7 @@ class Index {
 		return recipe.ustensils.filter((u) => {
 			return ustensils.includes(u)
 		}).length == ustensils.length
-	}
+	} // TO DO 
 
 	// recherche par appliance
 	filterByAppliance (appliances, recipe) {
@@ -117,7 +116,7 @@ class Index {
 			return true
 		}
 		return appliances.includes(recipe.appliance)
-	}
+	} // TO DO 
 
 	// recherche globale
 	filterRecipes() {
@@ -127,7 +126,9 @@ class Index {
 			&& this.filterByUstensils(this.ustensils, recipe)
 			&& this.filterByAppliance (this.appliances, recipe)
 		})
-	}
+	} // TO DO 
+
+	// ---------------------- affichage et suppression des tags -------------------------
 
 	// option selectionnée select ingredients
 	selectIngredient(ingredient) {
@@ -138,7 +139,6 @@ class Index {
 		document.querySelector('#tags').appendChild(tag.render())
 	}
 
-	// ---------------------- affichage et suppression des tags -------------------------
 
 	// sup tag ingredients
 	deleteIngredientTag(tagElement, ingredient) {
