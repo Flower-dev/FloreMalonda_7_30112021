@@ -83,6 +83,7 @@ class Index {
             return true
         } 
 		return recipe.name.toLowerCase().trim().includes(value) ||
+		recipe.description.toLowerCase().trim().includes(value) ||
 		recipe.ingredients.filter((i) => {
 			return i.ingredient.toLowerCase().includes(value.toLowerCase())
 		}).length > 0 ||
@@ -97,19 +98,9 @@ class Index {
 		if(ingredients.length == 0) {
 			return true
 		}
-		return recipe.ingredients.filter((i) => {
-			return ingredients.includes(i.ingredient)
-		}).length == ingredients.length
-	}
-
-	// recherche par ustensile
-	filterByUstensils(ustensils, recipe){
-		if(ustensils.length == 0) {
-			return true
-		}
-		return recipe.ustensils.filter((u) => {
-			return ustensils.includes(u)
-		}).length == ustensils.length
+		return recipe.ingredients.filter((i) => 
+			ingredients.includes(i.ingredient)
+		).length == ingredients.length
 	}
 
 	// recherche par appliance
@@ -120,13 +111,23 @@ class Index {
 		return appliances.includes(recipe.appliance)
 	}
 
+	// recherche par ustensile
+	filterByUstensils(ustensils, recipe){
+		if(ustensils.length == 0) {
+			return true
+		}
+		return recipe.ustensils.filter((u) =>
+			ustensils.includes(u)
+		).length == ustensils.length
+	}
+
 	// recherche globale
 	filterRecipes() {
 		this.filteredRecipes = this.list.filter((recipe) => {
 			return this.filterGlobalRecipe(this.query, recipe)
 			&& this.filterByIngredient(this.ingredients, recipe) 
-			&& this.filterByUstensils(this.ustensils, recipe)
 			&& this.filterByAppliance (this.appliances, recipe)
+			&& this.filterByUstensils(this.ustensils, recipe)
 		})
 	}
 
