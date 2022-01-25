@@ -44,75 +44,78 @@ class Index {
 	// Liste des ingredients dans tableau des recettes
 	selectIngredientsList(){
 		const ingOptions = []
-		for (let index = 0; index < this.list.length; index++) {
-			for (let i = 0; i < this.list[index].ingredients.length; i++) {
-				ingOptions.push(this.list[index].ingredients[i].ingredient)
+		for (let index = 0; index < this.filteredRecipes.length; index++) {
+			for (let i = 0; i < this.filteredRecipes[index].ingredients.length; i++) {
+				ingOptions.push(this.filteredRecipes[index].ingredients[i].ingredient)
 			}
 		};
 		return [...new Set(ingOptions)] 
-	} // TO DO fait le 24.01.2022 - sup les doublons et trier par ordre alphabetique .sort()
+	} // TO DO sup les doublons et trier par ordre alphabetique .sort()
 
 	// Liste des appliances dans tableau des recettes
 	selectAppliancesList() {
 		const appOptions = []
-		for (let index = 0; index < this.list.length; index++) {
-			appOptions.push(this.list[index].appliance)
+		for (let index = 0; index < this.filteredRecipes.length; index++) {
+			appOptions.push(this.filteredRecipes[index].appliance)
 		}
 		return [...new Set(appOptions)]
-	} // TO DO fait le 24.01.2022 - sup les doublons et trier par ordre alphabetique .sort()
+	} // TO DO sup les doublons et trier par ordre alphabetique .sort()
 
 	// Liste des ustensiles dans tableau des recettes
 	selectUstensilsList() {
 	const ustOptions = []
-	for (let index = 0; index < this.list.length; index++) {
-		for (let i = 0; i < this.list[index].ustensils.length; i++) {
-            ustOptions.push(this.list[index].ustensils[i])
+	for (let index = 0; index < this.filteredRecipes.length; index++) {
+		for (let i = 0; i < this.filteredRecipes[index].ustensils.length; i++) {
+            ustOptions.push(this.filteredRecipes[index].ustensils[i])
         }
 	}
 	return [...new Set(ustOptions)]
-	} // TO DO fait le 24.01.2022 - sup les doublons et trier par ordre alphabetique .sort()
+	} // TO DO sup les doublons et trier par ordre alphabetique .sort()
 
 
 	// --------------- Algorithme de recherche avec des boucles for -----------------
 
-	// recherche via la search bar (titres, ustensils, ingredients, appliances)
+	// recherche via la search bar (titres, descriptions, ustensils, ingredients, appliances)
 
     filterGlobalRecipe(value, recipe) {
 		if (recipe.name.toLowerCase().includes(value) || recipe.description.toLowerCase().includes(value)) {
 			return true
 		}
-		for (let index = 0; index < recipe.ingredients.length; index++) {
-			const element = recipe.ingredients[index]
-			if (element.ingredient.toLowerCase().includes(value)) {
-				return true
-			}
-		} 
-		// recipe.appliance.toLowerCase().includes(value.toLowerCase()) ||
-		// recipe.ustensils.filter((u) => {
-		// 	return u.toLowerCase().includes(value.toLowerCase())
-		// }).length > 0
+		// for (let index = 0; index < recipe.ingredients.length; index++) {
+		// 	const i = recipe.ingredients[index]
+		// 	if (i.ingredient.toLowerCase().includes(value)) {
+		// 		return true
+		// 	}
+		// } 
+		// for (let index = 0; index < recipe.appliances; index++) {
+		// 	const a = recipe.appliances[index]
+		// 	if (a.appliance.toLowerCase().includes(value)) {
+		// 		return true
+		// 	}
+		// }
+		// for (let index = 0; index < recipe.ustensils.length; index++) {
+		// 	const u = recipe.ustensils[index]
+		// 	if (u.ustensil.toLowerCase().includes(value)) {
+		// 		return true
+		// 	}
+		// } 
 		return false
-    } // fait le 24.01.2022 
+    } 
 
 	// recherche par ingredient
 	filterByIngredient(ingredients, recipe){ 
 		if(ingredients.length == 0) {
 			return true
+		} 
+		let filteredIngredients = []
+		for(let index = 0; index < recipe.ingredients.length; index++) {
+			const i = recipe.ingredients[index]
+			if (ingredients.includes(i.ingredient)) {
+				filteredIngredients.push(true)
+			}
 		}
-		return recipe.ingredients.filter((i) => {
-			return ingredients.includes(i.ingredient)
-		}).length == ingredients.length
-	} // TO DO 
-
-	// recherche par ustensile
-	filterByUstensils(ustensils, recipe){
-		if(ustensils.length == 0) {
-			return true
-		}
-		return recipe.ustensils.filter((u) => {
-			return ustensils.includes(u)
-		}).length == ustensils.length
-	} // TO DO 
+		return filteredIngredients.length == ingredients.length
+	}
 
 	// recherche par appliance
 	filterByAppliance (appliances, recipe) {
@@ -120,7 +123,23 @@ class Index {
 			return true
 		}
 		return appliances.includes(recipe.appliance)
-	} // TO DO 
+	}
+
+	// recherche par ustensile
+	filterByUstensils(ustensils, recipe){
+		if(ustensils.length == 0) {
+			return true
+		}
+		let filteredUstensils = []
+		for (let index = 0; index < recipe.ustensils.length; index++) {
+			const u = recipe.ustensils[index]
+			if (ustensils.includes(u)) {
+				filteredUstensils.push(true)
+			}
+		}	
+		return filteredUstensils.length == ustensils.length
+	}  
+
 
 	// recherche globale
 	filterRecipes() {
@@ -130,7 +149,7 @@ class Index {
 			&& this.filterByUstensils(this.ustensils, recipe)
 			&& this.filterByAppliance (this.appliances, recipe)
 		})
-	} // TO DO 
+	} // TO DO utiliser une boucle for simple
 
 	// ---------------------- affichage et suppression des tags -------------------------
 
@@ -138,6 +157,7 @@ class Index {
 	selectIngredient(ingredient) {
 		this.ingredients.push(ingredient)
 		this.filterRecipes()
+		this.renderSelectDOM()
 		this.renderRecipeDOM(this.filteredRecipes)
 		const tag = new Tags('', ingredient, 'ingredient', (tagElement, ingredient) => this.deleteIngredientTag(tagElement, ingredient))
 		document.querySelector('#tags').appendChild(tag.render())
@@ -151,6 +171,7 @@ class Index {
 			return i != ingredient
 		})
 		this.filterRecipes()
+		this.renderSelectDOM()
 		this.renderRecipeDOM(this.filteredRecipes)
 	}
 
@@ -158,6 +179,7 @@ class Index {
 	selectAppliance(appliance) {
 		this.appliances.push(appliance)
 		this.filterRecipes()
+		this.renderSelectDOM()
 		this.renderRecipeDOM(this.filteredRecipes)
 		const tag = new Tags('', appliance, 'appliance', (tagElement, appliance) => this.deleteApplianceTag(tagElement, appliance))
 		document.querySelector('#tags').appendChild(tag.render())
@@ -170,6 +192,7 @@ class Index {
 			return a != appliance
 		})
 		this.filterRecipes()
+		this.renderSelectDOM()
 		this.renderRecipeDOM(this.filteredRecipes)
 	}
 
@@ -177,6 +200,7 @@ class Index {
 	selectUstensil(ustensil) {
 		this.ustensils.push(ustensil)
 		this.filterRecipes()
+		this.renderSelectDOM()
 		this.renderRecipeDOM(this.filteredRecipes)
 		const tag = new Tags('', ustensil, 'ustensil', (tagElement, ustensil) => this.deleteUstensilTag(tagElement, ustensil))
 		document.querySelector('#tags').appendChild(tag.render())
@@ -189,6 +213,7 @@ class Index {
 			return u != ustensil
 		})
 		this.filterRecipes()
+		this.renderSelectDOM()
 		this.renderRecipeDOM(this.filteredRecipes)
 	}
 
@@ -200,7 +225,8 @@ class Index {
 			this.query = value
 			this.filterRecipes()
 			this.renderRecipeDOM(this.filteredRecipes)
-			console.log(value)
+			this.renderSelectDOM()
+	
 		});
 		const $search = document.querySelector('#search');
 		$search.innerHTML = `
@@ -211,7 +237,7 @@ class Index {
 
 	renderSelectDOM(){
 		const $select = document.querySelector('#select');
-	
+		$select.innerHTML = '';
 		const selectIngredients = new Select('select-ingredient', 'ingredients', this.selectIngredientsList(), (ingredient) => (this.selectIngredient(ingredient)), (ingredient) => (this.deleteIngredientTag(ingredient))) ;
 		const selectAppliances = new Select('select-appliance', 'appliances', this.selectAppliancesList(), (appliance) => this.selectAppliance(appliance));
 		const selectUstensils = new Select('select-ustensil', 'ustensils', this.selectUstensilsList(), (ustensil) => this.selectUstensil(ustensil));
