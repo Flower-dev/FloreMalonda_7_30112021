@@ -75,30 +75,24 @@ class Index {
 
 	// --------------- Algorithme de recherche avec des boucles for -----------------
 
-	// recherche via la search bar (titres, descriptions, ustensils, ingredients, appliances)
-
     filterGlobalRecipe(value, recipe) {
-		if (recipe.name.toLowerCase().includes(value) || recipe.description.toLowerCase().includes(value)) {
+		if (value === '' || 
+			value.length < 3 || 
+			recipe.name.toLowerCase().trim().includes(value) || 
+			recipe.description.toLowerCase().trim().includes(value)  ||
+			recipe.appliance.toLowerCase().includes(value.toLowerCase()) || 
+			recipe.ustensils.includes(value.toLowerCase())) {
 			return true
 		}
-		// for (let index = 0; index < recipe.ingredients.length; index++) {
-		// 	const i = recipe.ingredients[index]
-		// 	if (i.ingredient.toLowerCase().includes(value)) {
-		// 		return true
-		// 	}
-		// } 
-		// for (let index = 0; index < recipe.appliances; index++) {
-		// 	const a = recipe.appliances[index]
-		// 	if (a.appliance.toLowerCase().includes(value)) {
-		// 		return true
-		// 	}
-		// }
-		// for (let index = 0; index < recipe.ustensils.length; index++) {
-		// 	const u = recipe.ustensils[index]
-		// 	if (u.ustensil.toLowerCase().includes(value)) {
-		// 		return true
-		// 	}
-		// } 
+
+		// filter for ingredients
+		for (let index = 0; index < recipe.ingredients.length; index++) {
+			const i = recipe.ingredients[index]
+			if (i.ingredient.toLowerCase().includes(value.toLowerCase())) {
+				return true
+			}
+		} 
+
 		return false
     } 
 
