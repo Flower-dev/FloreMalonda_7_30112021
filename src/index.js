@@ -134,16 +134,21 @@ class Index {
 		return filteredUstensils.length == ustensils.length
 	}  
 
-
 	// recherche globale
 	filterRecipes() {
-		this.filteredRecipes = this.list.filter((recipe) => {
-			return this.filterGlobalRecipe(this.query, recipe)
-			&& this.filterByIngredient(this.ingredients, recipe) 
-			&& this.filterByUstensils(this.ustensils, recipe)
-			&& this.filterByAppliance (this.appliances, recipe)
-		})
-	} // TO DO utiliser une boucle for simple
+		let tmpRecipes = [];
+		for(let index = 0; index < this.list.length; index++) {
+			let recipe = this.list[index];
+			let isFiltered = this.filterGlobalRecipe(this.query, recipe)
+				&& this.filterByIngredient(this.ingredients, recipe) 
+				&& this.filterByUstensils(this.ustensils, recipe)
+				&& this.filterByAppliance (this.appliances, recipe);
+			if( isFiltered ) {
+				tmpRecipes.push(recipe)
+			}
+		} 
+		this.filteredRecipes =  tmpRecipes
+	} 
 
 	// ---------------------- affichage et suppression des tags -------------------------
 
