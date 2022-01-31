@@ -49,8 +49,8 @@ class Index {
 				ingOptions.push(this.filteredRecipes[index].ingredients[i].ingredient)
 			}
 		};
-		return [...new Set(ingOptions)] 
-	} // TO DO sup les doublons et trier par ordre alphabetique .sort()
+		return [...new Set(ingOptions)].sort() 
+	} 
 
 	// Liste des appliances dans tableau des recettes
 	selectAppliancesList() {
@@ -58,8 +58,8 @@ class Index {
 		for (let index = 0; index < this.filteredRecipes.length; index++) {
 			appOptions.push(this.filteredRecipes[index].appliance)
 		}
-		return [...new Set(appOptions)]
-	} // TO DO sup les doublons et trier par ordre alphabetique .sort()
+		return [...new Set(appOptions)].sort()
+	} 
 
 	// Liste des ustensiles dans tableau des recettes
 	selectUstensilsList() {
@@ -69,8 +69,8 @@ class Index {
             ustOptions.push(this.filteredRecipes[index].ustensils[i])
         }
 	}
-	return [...new Set(ustOptions)]
-	} // TO DO sup les doublons et trier par ordre alphabetique .sort()
+	return [...new Set(ustOptions)].sort()
+	} 
 
 
 	// --------------- Algorithme de recherche avec des boucles for -----------------
